@@ -1,6 +1,7 @@
-	{% extends 'masterbase.html' %}
+	{% extends 'master/masterbase.html' %}
 	{% load crispy_forms_tags %}
 	{% block content %}
+
 	<div id="layoutSidenav_content">
 	    <main>
 	        <div class="container-fluid pt-2">
@@ -8,16 +9,28 @@
 	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 	                <li class="breadcrumb-item active">Master View</li>
 	            </ol>
+	            <style type="text/css">
+	            	div.message {
+  					text-align: right;
+						  } 
+	            </style>
+	            <div class="message">
+	            	{% for message in messages %}
+					<div class="alert alert-success">
+					  <h1 class="display-6">{{message}}</h1> 
+					</div>
+					{% endfor %}
+				</div>
 	            <div class="card mb-4">
-	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Brands </div>
 	                    <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD NEW MODEL</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD NEW BRAND</a>
         </div>
 
 	         
 	                    <div class="card-body px-0">
 	                    
-	                            <div class="col-md-12">
+	                            <div class="col-md-12	">
 	                                <div class="form-group">
 	                                    <table class="table table-striped table-dark"
 	                                    id="dataTable"
@@ -26,28 +39,21 @@
                                     	>
 	                                        <thead>
 	                                            <tr>
-
-	                                                <th scope="col">Model ID</th>
-	                                               
+	                                                
 	                                                <th scope="col">Brand</th>
-	                                                <th scope="col">Model</th>
 	                                                <th scope="col">Update</th>
 	                                                <th scope="col">Delete</th>
-	 
-
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody>
-	                                        	{% for model in models %}
+	                                        	{% for brand in brands %}
 	                                            <tr>
-	                                                <th scope="row">{{model.id}}</th>
-	                                                <td>{{model.brand}}</td>
-	                                                <td>{{model.Name}}</td>
-	                                                
-	                                               
-	                                                 <td><a class="btn btn-outline-warning btn-sm" href="#">Update</a></td>
+	                                                <!-- <th scope="row">{{brand.id}}</th> -->
+	                                                <td>{{brand.Name}}</td>
 
-					<td><a class="btn btn-outline-danger btn-sm" href="#">Delete</a></td>
+	                                                <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebrand' brand.id %}">UPDATE</a></td>
+
+					<td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletebrand' brand.id %}">DELETE</a></td>
 	                                            </tr>
 	                                            {% endfor %}
 	                                           
@@ -59,15 +65,15 @@
 
 						</div>
 				</div>
-		</main>
-	</div>
+		</main>	
+  </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-              ADD NEW MODEL
+              ADD NEW BRAND
           </h5>
           <hr>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -81,7 +87,7 @@
                 {% for fm in form %}
                 {{fm|as_crispy_field}}
                 {% endfor %}
-                  <input class="btn float-right btn-outline-info col-lg-6" type=submit value="Save"/>
+                <input class="btn float-right btn-outline-info col-lg-6" type=submit value="Save"/>  
             </form>
           </div>
         </div>

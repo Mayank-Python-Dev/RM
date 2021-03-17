@@ -1,4 +1,4 @@
-	{% extends 'masterbase.html' %}
+	{% extends 'master/masterbase.html' %}
 	{% load crispy_forms_tags %}
 	{% block content %}
 	<div id="layoutSidenav_content">
@@ -8,10 +8,22 @@
 	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 	                <li class="breadcrumb-item active">Master View</li>
 	            </ol>
+	            <style type="text/css">
+	            	div.message {
+  					text-align: right;
+						  } 
+	            </style>
+	            <div class="message">
+	            	{% for message in messages %}
+					<div class="alert alert-success">
+					  <strong>{{message}}!</strong> I
+					</div>
+					{% endfor %}
+				</div>
 	            <div class="card mb-4">
-	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Fuel </div>
 	                    <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD NEW MODEL</a>
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD FUEL TYPE</a>
         </div>
 
 	         
@@ -22,20 +34,15 @@
 	                                    <table class="table table-striped table-dark"
 	                                    id="dataTable"
                                     	width="100%"
-                                    	cellspacing="0"
-                                    	>
+                                    	cellspacing="0">
 	                                        <thead>
 	                                            <tr>
 
-	                                                <th scope="col">Colour ID</th>
 	                                               
+	                                             
 	                                                <th scope="col">Brand</th>
 	                                                <th scope="col">Model</th>
 	                                                <th scope="col">Type</th>
-	                                                <th scope="col">Variant</th>
-	                                                <th scope="col">Transmission</th>
-	                                                <th scope="col">Colour</th>
-	                                                <th scope="col">Typecode</th>
 	                                                <th scope="col">Update</th>
 	                                                <th scope="col">Delete</th>
 	 
@@ -43,21 +50,17 @@
 	                                            </tr>
 	                                        </thead>
 	                                        <tbody>
-	                                        	{% for colour in colours %}
+	                                        	{% for fuel in fuels %}
 	                                            <tr>
-	                                                <th scope="row">{{colour.id}}</th>
-	                                                <td>{{colour.brand}}</td>
-	                                                <td>{{colour.model}}</td>
-	                                                <td>{{colour.fuel}}</td>
-	                                                <td>{{colour.variant}}</td>
-	                                                <td>{{colour.transmission}}</td>
-	                                                <td>{{colour.Name}}</td>
-	                                                <td>{{colour.typecode}}</td>
+	                                      
+	                                             
+	                                                <td>{{fuel.brand}}</td>
+	                                                <td>{{fuel.model}}</td>
+	                                                <td>{{fuel.Name}}</td>
 	                                                
 	                                               
-	                                                 <td><a class="btn btn-outline-warning btn-sm" href="#">Update</a></td>
-
-					<td><a class="btn btn-outline-danger btn-sm" href="#">Delete</a></td>
+	                                                <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatefuel' fuel.id %}">UPDATE</a></td>
+	                                                 <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletefuel' fuel.id %}">DELETE</a></td>
 	                                            </tr>
 	                                            {% endfor %}
 	                                           
@@ -77,7 +80,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-              ADD NEW MODEL
+              ADD FUEL TYPE
           </h5>
           <hr>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -91,7 +94,7 @@
                 {% for fm in form %}
                 {{fm|as_crispy_field}}
                 {% endfor %}
-                  <input class="btn float-right btn-outline-info col-lg-6" type=submit value="Save"/>
+                  <input type="submit" class="btn float-right btn-outline-info col-lg-6" name=add value="ADD">
             </form>
           </div>
         </div>

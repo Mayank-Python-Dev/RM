@@ -1,0 +1,31 @@
+{% extends 'master/masterbase.html' %}
+	{% load crispy_forms_tags %}
+	{% block content %}
+
+	<div id="layoutSidenav_content">
+	    <main>
+	        <div class="container-fluid pt-2">
+	            <ol class="breadcrumb mb-4 bg-white ">
+	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+	                <li class="breadcrumb-item active">Master View</li>
+	            </ol>
+	            <div class="card mb-4">
+	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Brands </div>
+	                    
+        		<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h1 class="display-4">Are you sure you want to delete <h1 class="display-6">"{{variant}}"?</h1>
+
+			<form action="{% url 'deletevariant' variant.id  %}" method="POST">
+				
+				{% csrf_token %}
+				<a class="btn btn-warning btn-lg" href="{% url 'variant' %}">Cancel</a>
+
+				<input class="btn btn-danger btn-lg" type="submit" name="Confirm">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-	{% extends 'masterbase.html' %}
+	{% extends 'master/masterbase.html' %}
 	{% load crispy_forms_tags %}
 	{% block content %}
 	<div id="layoutSidenav_content">
@@ -8,8 +8,20 @@
 	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 	                <li class="breadcrumb-item active">Master View</li>
 	            </ol>
+	            <style type="text/css">
+	            	div.message {
+  					text-align: right;
+						  } 
+	            </style>
+	            <div class="message">
+	            	{% for message in messages %}
+					<div class="alert alert-success">
+					  <strong>{{message}}!</strong> I
+					</div>
+					{% endfor %}
+				</div>
 	            <div class="card mb-4">
-	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Variant </div>
 	                    <div class="m-3 p-3">
             <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD VARIANT </a>
         </div>
@@ -26,7 +38,7 @@
 	                                        <thead>
 	                                            <tr>
 
-	                                                <th scope="col">Variant ID</th>
+	                                                <!-- <th scope="col">Variant ID</th> -->
 	                                           
 	                                                <th scope="col">Brand</th>
 	                                                <th scope="col">Model</th>
@@ -42,7 +54,7 @@
 	                                        <tbody>
 	                                        	{% for variant in variants %}
 	                                            <tr>
-	                                                <th scope="row">{{variant.id}}</th>
+	                                                <!-- <th scope="row">{{variant.id}}</th> -->
 	                                              
 	                                                <td>{{variant.brand}}</td>
 	                                                <td>{{variant.model}}</td>
@@ -52,12 +64,8 @@
 	                                                
 	                                                
 	                                               
-	                                                <td><button type="button"
-	                                                        class="btn btn-outline-warning btn-sm">Update</button>
-	                                                </td>
-	                                                <td><button type="button"
-	                                                        class="btn btn-outline-danger btn-sm">Delete</button>
-	                                                </td>
+	                                                <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatevariant' variant.id %}">UPDATE</a></td>
+	                                                <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletevariant' variant.id %}">DELETE</a></td>
 	                                            </tr>
 	                                            {% endfor %}
 	                                           
