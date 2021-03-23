@@ -6,9 +6,6 @@ from .fuel import Fuel
 from .variant import Variant
 
 
-
-
-
 colour_type = (
     ('Pearl', 'Pearl'),
     ('Flat', 'Flat'),
@@ -22,7 +19,6 @@ class Colour(models.Model):
     fuel = models.ForeignKey(Fuel, on_delete=models.CASCADE)
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
     typecode = models.CharField(max_length=20, choices=colour_type)
-
 
     def __str__(self):
         return self.Name

@@ -4,8 +4,19 @@ from ..models import *
 
 from ..forms import *
 
+from login.decorators import *
+
 from ..Models.variant import *
 
+from django.contrib import messages
+
+from django.contrib.auth import authenticate , login , logout 
+
+from django.contrib.auth.decorators import login_required
+
+
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles=['Master'])
 def variantlist(request):
 	if request.method == "POST":
 		form = Variantform(request.POST)
@@ -16,13 +27,20 @@ def variantlist(request):
 			context = {'form': form}
 			return redirect('variant')
 
+		else:
+			messages.warning(request,f'VARIANT ALREADY EXISTS')
+			form = Variantform()
+			return redirect('variant')
+
+
 	else:
 		form = Variantform()
 		variants = Variant.objects.all()
 		context = {'variants' : variants,'form':form}
 		return render(request,'master/variants.html',context)
 
-
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles=['Master'])
 def updatevariant(request,pk):
    Data = Variant.objects.get(id=pk)
    Form = Variantform(instance = Data)
@@ -40,7 +58,8 @@ def updatevariant(request,pk):
    context = {'Form':Form}
    return render(request,'updatemaster/updatevariant.html',context)
 
-
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles=['Master'])
 def deletevariant(request,pk):
 	variant = Variant.objects.get(id=pk)
 	if request.method == "POST":

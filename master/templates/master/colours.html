@@ -1,101 +1,177 @@
-	{% extends 'master/masterbase.html' %}
-	{% load crispy_forms_tags %}
-	{% block content %}
-	<div id="layoutSidenav_content">
-	    <main>
-	        <div class="container-fluid pt-2">
-	            <ol class="breadcrumb mb-4 bg-white ">
-	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-	                <li class="breadcrumb-item active">Master View</li>
-	            </ol>
-	            <style type="text/css">
-	            	div.message {
-  					text-align: right;
-						  } 
-	            </style>
-	            <div class="message">
-	            	{% for message in messages %}
-					<div class="alert alert-success">
-					  <strong>{{message}}!</strong> I
-					</div>
-					{% endfor %}
+{% extends 'master/masterbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="layoutSidenav_content">
+	<main>
+		<div class="container-fluid pt-2">
+			<ol class="breadcrumb mb-4 bg-white ">
+				<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+				<li class="breadcrumb-item active">Master View</li>
+			</ol>
+			<style type="text/css">
+				div.message {
+					text-align: right;
+				}
+			</style>
+			<div class="message">
+				{% for message in messages %}
+				<div class="alert alert-success">
+					<h1 class="display-6">{{message}}</h1>
 				</div>
-	            <div class="card mb-4">
-	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Colours </div>
-	                    <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD COLOUR</a>
-        </div>
-	                    <div class="card-body px-0">
-	                            <div class="col-md-12">
-	                                <div class="form-group">
-	                                    <table class="table table-striped table-dark"
-	                                    id="dataTable"
-                                    	width="100%"
-                                    	cellspacing="0"
-                                    	>
-	                                        <thead>
-	                                            <tr>
-	                                                <th scope="col">Brand</th>
-	                                                <th scope="col">Model</th>
-	                                                <th scope="col">Type</th>
-	                                                <th scope="col">Variant</th>
-	                                                <th scope="col">Colour</th>
-	                                                <th scope="col">Typecode</th>
-	                                                <th scope="col">Update</th>
-	                                                <th scope="col">Delete</th>
-	                                            </tr>
-	                                        </thead>
-	                                        <tbody>
-	                                        	{% for colour in colours %}
-	                                            <tr>
-	                                                <td>{{colour.brand}}</td>
-	                                                <td>{{colour.model}}</td>
-	                                                <td>{{colour.fuel}}</td>
-	                                                <td>{{colour.variant}}</td>
-	                                                <td>{{colour.Name}}</td>
-	                                                <td>{{colour.typecode}}</td>
-	                                                <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatecolour' colour.id %}">UPDATE</a></td>
+				{% endfor %}
+			</div>
+			<div class="card mb-4">
+				<div class="card-header"> <i class="fas fa-table mr-1"></i> Colours </div>
+				<div class="m-3 p-3">
+					<a href="#" data-toggle="modal" data-target="#exampleModal"
+						class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD COLOUR</a>
+				</div>
+				<div class="card-body px-0">
+					<div class="col-md-12">
+						<div class="form-group">
+							<table class="table table-striped table-dark" id="dataTable" width="100%" cellspacing="0">
+								<thead>
+									<tr>
+										<th scope="col">Brand</th>
+										<th scope="col">Model</th>
+										<th scope="col">Type</th>
+										<th scope="col">Variant</th>
+										<th scope="col">Colour</th>
+										<th scope="col">Typecode</th>
+										<th scope="col">Update</th>
+										<th scope="col">Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for colour in colours %}
+									<tr>
+										<td>{{colour.brand}}</td>
+										<td>{{colour.model}}</td>
+										<td>{{colour.fuel}}</td>
+										<td>{{colour.variant}}</td>
+										<td>{{colour.Name}}</td>
+										<td>{{colour.typecode}}</td>
+										<td><a class="btn btn-outline-warning btn-sm"
+												href="{% url 'updatecolour' colour.id %}">UPDATE</a></td>
 
-					<td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletecolour' colour.id %}">DELETE</a></td>
-	                                            </tr>
-	                                            {% endfor %}
-	                                           
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-	                            </div>
-	                        </div>
+										<td><a class="btn btn-outline-danger btn-sm"
+												href="{% url 'deletecolour' colour.id %}">DELETE</a></td>
+									</tr>
+									{% endfor %}
 
+								</tbody>
+							</table>
 						</div>
+					</div>
 				</div>
-		</main>
-	</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-              ADD COLOUR
-          </h5>
-          <hr>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="m-2 p-3">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {% for fm in form %}
-                {{fm|as_crispy_field}}
-                {% endfor %}
-                  <input class="btn float-right btn-outline-info col-lg-6" type=submit value="Save"/>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</main>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					ADD COLOUR
+				</h5>
+				<hr>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="m-2 p-3">
+					<form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
+						data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}">
+						{% csrf_token %}
+						{% for fm in form %}
+						{{fm|as_crispy_field}}
+						{% endfor %}
+						<input class="btn float-right btn-outline-info col-lg-6" type=submit value="Save" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$("#id_brand").change(function () {
+		const url = $("#personForm").attr("data-models-url");  // get the url of the `load_cities` view
+		const brandId = $(this).val();  // get the selected country ID from the HTML input
+
+		$.ajax({                       // initialize an AJAX request
+			url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+			data: {
+				'brand_id': brandId       // add the country id to the GET parameters
+			},
+			success: function (data) {   // `data` is the return of the `load_cities` view function
+				$("#id_model").html(data);  // replace the contents of the city input with the data that came from the server
+				/*
+				let html_data = '<option value="">---------</option>';
+				data.forEach(function (city) {
+					html_data += `<option value="${city.id}">${city.name}</option>`
+				});
+				console.log(html_data);
+				$("#id_city").html(html_data);
+				*/
+			}
+		});
+
+	});
+	$("#id_model").change(function () {
+		const url = $("#personForm").attr("data-fuels-url");  // get the url of the `load_cities` view
+		const modelId = $(this).val();  // get the selected country ID from the HTML input
+
+		$.ajax({                       // initialize an AJAX request
+			url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+			data: {
+				'model_id': modelId       // add the country id to the GET parameters
+			},
+			success: function (data) {   // `data` is the return of the `load_cities` view function
+				$("#id_fuel").html(data);  // replace the contents of the city input with the data that came from the server
+
+				/*let html_data = '<option value="">---------</option>';
+				data.forEach(function (fuel) {
+					html_data += `<option value="${model.pk}">${model.Name}</option>`
+				});
+				console.log(html_data);
+				$("#id_city").html(html_data);
+				*/
+
+			}
+		});
+	});
+
+	$("#id_fuel").change(function () {
+		const url = $("#personForm").attr("data-variants-url");  // get the url of the `load_cities` view
+		const fuelId = $(this).val();  // get the selected country ID from the HTML input
+
+		$.ajax({                       // initialize an AJAX request
+			url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+			data: {
+				'fuel_id': fuelId       // add the country id to the GET parameters
+			},
+			success: function (data) {   // `data` is the return of the `load_cities` view function
+				$("#id_variant").html(data);  // replace the contents of the city input with the data that came from the server
+
+				/*let html_data = '<option value="">---------</option>';
+				data.forEach(function (fuel) {
+					html_data += `<option value="${model.pk}">${model.Name}</option>`
+				});
+				console.log(html_data);
+				$("#id_city").html(html_data);
+				*/
+
+			}
+		});
+
+	});
+</script>
+
 
 {% endblock %}

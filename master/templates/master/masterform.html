@@ -4,150 +4,228 @@
 {% block content %}
 
 <div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid pt-2">
-        <ol class="breadcrumb mb-4 bg-white ">
-          <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-          <li class="breadcrumb-item active">Master View</li>
-        </ol>
-        <div class="card mb-4">
-         <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}">
+  <main>
+    <div class="container-fluid pt-2">
+      <ol class="breadcrumb mb-4 bg-white ">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Master View</li>
+        <div class="align-self-end ml-auto">
+          <a class="btn btn-secondary  btn-sm" href="{% url 'master' %}">BACK</a>
+        </div>
+      </ol>
+      <div class="card mb-4">
+        <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
+          data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}"
+          data-colours-url="{% url 'ajax_load_colours' %}">
           {% csrf_token %}
           <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
           <div class="card-body px-0">
-           
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.brand|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.model|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.fuel|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.variant|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.colour|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                   {{form.transmission|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-          </div>
-          
-           <div class="card-header"> <i class="fas fa-table mr-1"></i> Price List </div>
-       <div class="card-body px-0">     <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.ex_Showroom_Price|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                   {{form.ins_AMT|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.rto|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.fASTag|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.tcs|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.total|as_crispy_field}}
-                  </div>
-                </div>
-              </div>  
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.acc|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.extended_Warranty|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.amc|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{form.on_Road_Price|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-              
-              <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save"/>
-              </div>
-            </form>
-        </div>
-      </div>        
 
-      <script>
-    $("#id_brand").change(function () {
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.brand|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.model|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.fuel|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.variant|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.colour|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.transmission|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Price List </div>
+          <div class="card-body px-0">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.ex_Showroom_Price|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.ins_AMT|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.rto|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.fASTag|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.tcs|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.total|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.acc|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.extended_Warranty|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.amc|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.on_Road_Price|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      $("#id_brand").change(function () {
         const url = $("#personForm").attr("data-models-url");  // get the url of the `load_cities` view
         const brandId = $(this).val();  // get the selected country ID from the HTML input
 
         $.ajax({                       // initialize an AJAX request
-            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
-            data: {
-                'brand_id': brandId       // add the country id to the GET parameters
-            },
-            success: function (data) {   // `data` is the return of the `load_cities` view function
-                $("#id_model").html(data);  // replace the contents of the city input with the data that came from the server
-                /*
-                let html_data = '<option value="">---------</option>';
-                data.forEach(function (city) {
-                    html_data += `<option value="${city.id}">${city.name}</option>`
-                });
-                console.log(html_data);
-                $("#id_city").html(html_data);
-                */
-            }
+          url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+          data: {
+            'brand_id': brandId       // add the country id to the GET parameters
+          },
+          success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_model").html(data);  // replace the contents of the city input with the data that came from the server
+            /*
+            let html_data = '<option value="">---------</option>';
+            data.forEach(function (city) {
+                html_data += `<option value="${city.id}">${city.name}</option>`
+            });
+            console.log(html_data);
+            $("#id_city").html(html_data);
+            */
+          }
         });
 
-    });
-</script>            
+      });
+      $("#id_model").change(function () {
+        const url = $("#personForm").attr("data-fuels-url");  // get the url of the `load_cities` view
+        const modelId = $(this).val();  // get the selected country ID from the HTML input
 
-{% endblock %}
+        $.ajax({                       // initialize an AJAX request
+          url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+          data: {
+            'model_id': modelId       // add the country id to the GET parameters
+          },
+          success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_fuel").html(data);  // replace the contents of the city input with the data that came from the server
+
+            /*let html_data = '<option value="">---------</option>';
+            data.forEach(function (fuel) {
+              html_data += `<option value="${model.pk}">${model.Name}</option>`
+            });
+            console.log(html_data);
+            $("#id_city").html(html_data);
+            */
+
+          }
+        });
+      });
+
+      $("#id_fuel").change(function () {
+        const url = $("#personForm").attr("data-variants-url");  // get the url of the `load_cities` view
+        const fuelId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+          url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+          data: {
+            'fuel_id': fuelId       // add the country id to the GET parameters
+          },
+          success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_variant").html(data);  // replace the contents of the city input with the data that came from the server
+
+            /*let html_data = '<option value="">---------</option>';
+            data.forEach(function (fuel) {
+              html_data += `<option value="${model.pk}">${model.Name}</option>`
+            });
+            console.log(html_data);
+            $("#id_city").html(html_data);
+            */
+
+          }
+        });
+
+      });
+      $("#id_variant").change(function () {
+        const url = $("#personForm").attr("data-colours-url");  // get the url of the `load_cities` view
+        const variantId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+          url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+          data: {
+            'variant_id': variantId       // add the country id to the GET parameters
+          },
+          success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_colour").html(data);  // replace the contents of the city input with the data that came from the server
+
+            /*let html_data = '<option value="">---------</option>';
+            data.forEach(function (fuel) {
+              html_data += `<option value="${model.pk}">${model.Name}</option>`
+            });
+            console.log(html_data);
+            $("#id_city").html(html_data);
+            */
+
+          }
+        });
+
+      });
+    </script>
+
+    {% endblock %}

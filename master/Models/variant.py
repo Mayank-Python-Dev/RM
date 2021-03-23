@@ -10,7 +10,6 @@ class Variant(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
     fuel = models.ForeignKey(Fuel, on_delete=models.CASCADE)
-    
 
     def __str__(self):
         return self.Name

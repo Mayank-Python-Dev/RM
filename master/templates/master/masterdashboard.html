@@ -9,6 +9,18 @@
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active">Master View</li> 
             </ol>
+            <style type="text/css">
+                    div.message {
+                    text-align: right;
+                          } 
+                </style>
+                <div class="message">
+                    {% for message in messages %}
+                    <div class="alert alert-success">
+                      <h1 class="display-6">{{message}}</h1>  
+                    </div>
+                    {% endfor %}
+                </div>
             <div class="card mb-4">
                 <form>
                     <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
@@ -31,6 +43,7 @@
                                                 <th scope="col">Transmission</th>
                                                 <th scope="col">View</th>
                                                 <th scope="col">Edit</th>
+                                                <th scope="col">Delete</th>
 
                                             </tr>
                                         </thead>
@@ -45,10 +58,10 @@
                                                 <td>@{{form.transmission}}</td>
 
                                                 <td><a class="btn btn-outline-info btn-sm" href="{% url 'pricelistview' form.id  %}">VIEW</a></td>
-                                                </td>
+                                               
                                                 <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatepricelist' form.id %}">UPDATE</a></td>
-                                                </td>
-                                                </td>
+
+                                                <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletedeal' form.id %}">DELETE</a></td>
                                             </tr>
                                             {% endfor %}
                                             

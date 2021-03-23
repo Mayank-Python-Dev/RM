@@ -1,0 +1,24 @@
+{% extends 'master/masterbase.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid pt-2">
+      <ol class="breadcrumb mb-4 bg-white ">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Master View</li>
+        <div class="align-self-end ml-auto">
+          <a class="btn btn-secondary  btn-sm" href="{% url 'groups' %}">BACK</a>
+        </div>
+      </ol>
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Select Groups </div>
+          
+        <div class="card-body px-0">
+          <a href="{% url 'registersales' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Sales</a>
+          <a href="{% url 'registerheadoffice' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">HeadOffice</a>
+          <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">EDP</a>
+          <a href="#" class="btn btn-primary btn-lg disabled" role="button" aria-disabled="true">Account</a>
+        </div>
+
+{% endblock %}

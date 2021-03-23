@@ -1,0 +1,80 @@
+{% extends 'master/masterbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid pt-2">
+      <ol class="breadcrumb mb-4 bg-white ">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Master View</li>
+        <div class="align-self-end ml-auto">
+          <a class="btn btn-secondary  btn-sm" href="{% url 'groups' %}">BACK</a>
+        </div>
+      </ol>
+      <style type="text/css">
+                div.message {
+            text-align: right;
+              } 
+              </style>
+              <div class="message">
+                {% for message in messages %}
+          <div class="alert alert-success">
+            <h1 class="display-6">{{message}}</h1> 
+          </div>
+          {% endfor %}
+        </div>
+        <div class="card mb-4">
+          <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
+          data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}"
+          data-colours-url="{% url 'ajax_load_colours' %}">
+          {% csrf_token %}
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Sales </div>
+          <div class="card-body px-0">
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.username|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.email|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.first_name|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.last_name|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.password1|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.password2|as_crispy_field}}
+                </div>
+              </div>
+             </div>
+             <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
+            </div>
+           </form>
+          </div>
+         </div>
+        </main>
+       </div>
+      
+        
+{% endblock %}

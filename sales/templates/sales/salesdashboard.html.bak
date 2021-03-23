@@ -1,0 +1,78 @@
+{% extends 'sales/salesbase.html' %}
+
+<!-- {% load crispy_forms_tags %} -->
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid pt-2">
+        <ol class="breadcrumb mb-4 bg-white ">
+          <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+          <li class="breadcrumb-item active">Sales Manager View</li>
+        </ol>
+
+        <div class="card mb-4">
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+          
+
+
+          <div class="card-body px-0">
+          
+                  <div class="col-md-12">
+                      <div class="form-group">
+                          <table class="table table-striped table-Default"
+                          id="dataTable"
+                          width="100%"
+                          cellspacing="0"
+                          >
+                              <thead>
+                                  <tr>
+
+                                      <th scope="col">Booking Reciept</th>
+                                      
+                                      <th scope="col">Customer Name</th>
+                                      <th scope="col">Contact Number</th>
+                                      <th>Car Details</th>
+                                      <th>Booking Date</th>
+                                      <th>Status</th>
+                                      <th scope="col">Update</th>
+                                      <th scope="col">Delete</th>
+
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for booking in bookings %}
+                                  <tr>
+                                      <th scope="row">{{booking.booking_receipt}}</th>
+                                      <td>{{booking.customer_name}}</td>
+                                      <td>{{booking.contact_number}}</td>
+                                      <td>{{booking.Brand}} {{booking.Model}} {{booking.Variant}} {{booking.Colour}}</td>
+                                      <td>{{booking.Date}}</td>
+                                      <td><span class=" text-danger">PENDING</span></td>
+                                      <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebooking' booking.id %}">UPDATE</a></td>
+                                      <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletebooking' booking.id %}">DELETE</a></td>
+                                      
+                                  </tr>
+                                  {% endfor %}
+                                 
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+
+</div>
+
+      </div>
+
+    </main>
+    
+  </div>
+</div>
+
+
+
+{% endblock %}

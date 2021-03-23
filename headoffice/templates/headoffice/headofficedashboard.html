@@ -1,0 +1,65 @@
+{% extends 'headoffice/headofficebase.html' %}
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid pt-2">
+        <ol class="breadcrumb mb-4 bg-white">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Sales Manager View</li>
+        </ol>
+
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            Sales Manager View
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Bookin ID</th>
+                    <th>Customer</th>
+                    <th>Model</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for field in sales %}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>td>
+                    <td></td>
+                    <td class="text-danger">Pending</td>
+                    <td>
+                      
+                      <a href = "{% url 'Modification' field.Booking_ID %}"><button type="button" class="btn btn-info">View</button></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+{% endblock %}
