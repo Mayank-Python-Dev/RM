@@ -9,4 +9,3 @@ class Bookingform(forms.ModelForm):
     class Meta:
         model = Salesbooking
         fields = "__all__"
-        

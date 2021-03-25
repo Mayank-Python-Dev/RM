@@ -4,7 +4,6 @@ from ..models import *
 
 from ..forms import *
 
-
 from login.decorators import *
 
 from django.contrib import messages
@@ -22,8 +21,6 @@ def fuellist(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request,f'FUEL TYPE ADDED!')
-			form  = Fuelform()
-			context = {'form': form}
 			return redirect('fuel')
 		else:
 			messages.warning(request,f'FUEL TYPE ALREADY EXISTS')

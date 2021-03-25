@@ -54,6 +54,7 @@ urlpatterns = [
     path('selectgroups/',register.select_groups,name = 'groups'),
     path('selectgroups/sales',register.register_sales,name = 'registersales'),
     path('selectgroups/headoffice',register.register_headoffice,name = 'registerheadoffice'),
+    path('dealershipview/',register.dealership,name = 'dealershipview'),
 
 
 ]

@@ -13,12 +13,11 @@
                 </div>
             </ol>
             <div class="card mb-4">
-                <form>
-                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Price List</div>
                     <div class="card-body px-0">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <table class="table table-striped table-info">
+                                <table class="table table-striped table-dark">
                                     <thead>
                                         <tr>
                                             <!-- <th scope="col">Car ID</th> -->
@@ -55,6 +54,41 @@
                                             <td>{{Form.extended_Warranty}}</td>
                                             <td>{{Form.amc}}</td>
                                             <td>{{Form.on_Road_Price}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card mb-4">
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
+                    <div class="card-body px-0">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <table class="table table-striped table-dark">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th scope="col">Car ID</th> -->
+                                            <th scope="col">Consumer Offer</th>
+                                            <th scope="col">Exchange Bonus</th>
+                                            <th scope="col">Corporate Discount</th>
+                                            <th scope="col">Remarks</th>
+                                            <th scope="col">Dealer Discount</th>
+                                            <th scope="col">Total Discount </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for Form in Forms %}
+                                        <tr>
+                                            <td>{{Form.consume_offer}}</td>
+                                            <td>{{Form.exchange_bonus}}</td>
+                                            <td>{{Form.corporate_discount}}</td>
+                                            <td>{{Form.remarks}}</td>
+                                            <td>{{Form.dealer_discount}}</td>
+                                            <td>{{Form.total_discount}}</td>
                                         </tr>
                                         {% endfor %}
 

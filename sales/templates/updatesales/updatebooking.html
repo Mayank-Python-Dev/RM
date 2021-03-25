@@ -11,7 +11,7 @@
           <li class="breadcrumb-item active">Sales Manager View</li>
         </ol>
         <div class="card mb-4">
-         <form method = "Post" enctype="multipart/form-data">
+         <form method = "Post" enctype="multipart/form-data" id="id_ajax_upload_form">
         <div class="card mb-4">
           <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
    
@@ -134,6 +134,51 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
+<div class="card-body px-0 lowerValue">     <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Consume_offer|as_crispy_field}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Exchange_bonus|as_crispy_field}}
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Corporate_discount|as_crispy_field}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Remarks|as_crispy_field}}
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Dealer_discount|as_crispy_field}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            {{form.Total_discount|as_crispy_field}}
+          </div>
+        </div>
+      </div>
+      
+      
+      
       <div class="card mb-4">
          
         <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
@@ -142,17 +187,17 @@
         <tr>
         <th>Booking Reciept</th>
         <th>{{form.booking_receipt}}</th>
-        {% if form.booking_receipt  %}
+        {% if form.is_multipart %}
         <td><span class="text-success">SUBMITTED</span></td>
-        {% elif not form.booking_receipt %}
+        {% else %}
         <td><span class="text-danger">PENDING</span></td>
         {% endif %}
         
         </tr>
         <tr>
         <th>Quotation</th>
-        <th>{{form.quotation}}</th>
-        {% if form.quotation  %}
+        <th>{{form.quotation}}</th> 
+        {% if form.is_multipart %}
         <td><span class="text-success">SUBMITTED</span></td>
         {% else  %}
         <td><span class="text-danger">PENDING</span></td>
@@ -162,9 +207,21 @@
         <tr>
         <th>Order Form</th>
         <th>{{form.order_form}}</th>  
-        {% if form.order_form  %}
+        {% if form.is_multipart %}
         <td><span class="text-success">SUBMITTED</span></td>
-        {% elif not form.order_form %}
+        {% else %}
+        <td><span class="text-danger">PENDING</span></td>
+        {% endif %}
+        
+        </tr>
+
+         </tr>
+        <tr>
+        <th>Delivery Order</th>
+        <th>{{form.Delivery_Order}}</th>  
+        {% if form.is_multipart %}
+        <td><span class="text-success">SUBMITTED</span></td>
+        {% else %}
         <td><span class="text-danger">PENDING</span></td>
         {% endif %}
         
@@ -187,68 +244,99 @@
 </div>
 </div>
 </div>
- <script>
-   var score = 0;
-   function getData(){
+ <script type="text/javascript">
+   // var score = 0;
+   // function getData(){
      
-     var brand = $('#id_Brand').val();
-     var id_Model = $('#id_Model').val();
-     var id_Variant = $('#id_Variant').val();
-     var id_Colour = $('#id_Colour').val();
-    if(brand=='' || id_Model=='' || id_Variant == '' || id_Colour == ''){
-      if(window.score>0){
-            $('.lowerValue .numberinput').val('');
+   //   var brand = $('#id_Brand').val();
+   //   var id_Model = $('#id_Model').val();
+   //   var id_Variant = $('#id_Variant').val();
+   //   var id_Colour = $('#id_Colour').val();
+   //  if(brand=='' || id_Model=='' || id_Variant == '' || id_Colour == ''){
+   //    if(window.score>0){
+   //          $('.lowerValue .numberinput').val('');
           
-          }
-      return false;
-    }
-     $.ajax({
-       url:'/sales/detail/?brand='+brand+'&model='+id_Model+'&variant='+id_Variant+'&color='+id_Colour,
-       success:function(json_response){
-        data = JSON.parse(json_response.data);
-        if(!data.length > 0)
-        {
-          if(window.score>0){
-            $('.lowerValue .numberinput').val('');
+   //        }
+   //    return false;
+   //  }
+   //   $.ajax({
+   //     url:'/sales/detail/?brand='+brand+'&model='+id_Model+'&variant='+id_Variant+'&color='+id_Colour,
+   //     success:function(json_response){
+   //      data = JSON.parse(json_response.data);
+   //      if(!data.length > 0)
+   //      {
+   //        if(window.score>0){
+   //          $('.lowerValue .numberinput').val('');
           
-          }
-          return false
-        }
-        window.score++;
+   //        }
+   //        return false
+   //      }
+   //      window.score++;
         
-        var a = data[0].fields;
-        $("#id_Ex_Showroom_Price").val(a.ex_Showroom_Price);
-        $("#id_Ins_AMT").val(a.ins_AMT);
-        $("#id_Rto").val(a.rto);
-        $("#id_FASTag").val(a.fASTag);
-        $("#id_Tcs").val(a.tcs);
-        $("#id_Total").val(a.total);
-        $("#id_Acc").val(a.acc);
-        $("#id_Extended_Warranty").val(a.extended_Warranty);
-        $("#id_Amc").val(a.amc);
-        $("#id_On_Road_Price").val(a.on_Road_Price);
-       }
-     })
-   }
-   $(document).ready(function(){
-     $(".upperFilter select").change(function() {
-      getData();
-     });
+   //      var a = data[0].fields;
+   //      $("#id_Ex_Showroom_Price").val(a.ex_Showroom_Price);
+   //      $("#id_Ins_AMT").val(a.ins_AMT);
+   //      $("#id_Rto").val(a.rto);
+   //      $("#id_FASTag").val(a.fASTag);
+   //      $("#id_Tcs").val(a.tcs);
+   //      $("#id_Total").val(a.total);
+   //      $("#id_Acc").val(a.acc);
+   //      $("#id_Extended_Warranty").val(a.extended_Warranty);
+   //      $("#id_Amc").val(a.amc);
+   //      $("#id_On_Road_Price").val(a.on_Road_Price);
+   //     }
+   //   })
+   // }
+   // $(document).ready(function(){
+   //   $(".upperFilter select").change(function() {
+   //    getData();
+   //   });
     
-   });
-    $("#id_brand").change(function () {
-       url = "";
-      updateDropDown(url,'id_model');
-    });
-    function updateDropDown(url,target_id){
-      $.ajax({
-        url:url,
-        success:function (data){
-          $("#"+target_id).html(data);
-        }
-      });
+   // });
+   //  $("#id_brand").change(function () {
+   //     url = "";
+   //    updateDropDown(url,'id_model');
+   //  });
+   //  function updateDropDown(url,target_id){
+   //    $.ajax({
+   //      url:url,
+   //      success:function (data){
+   //        $("#"+target_id).html(data);
+   //      }
+   //    });
 
-    }
+   //  }
+
+
+
+   // $('#id_ajax_upload_form').submit(function(e){
+   //      e.preventDefault();
+   //      $form = $(this)
+   //      var formData = new FormData(this);
+   //      $.ajax({
+   //          url: window.location.pathname,
+   //          type: 'POST',
+   //          data: formData,
+   //          success: function (response) {
+   //              $('.error').remove();
+   //              console.log(response)
+   //              if(response.error){
+   //                  $.each(response.errors, function(name, error){
+   //                      error = '<small class="text-muted error">' + error + '</small>'
+   //                      $form.find('[name=' + name + ']').after(error);
+   //                  })
+   //              }
+   //              else{
+   //                  alert(response.message)
+   //                  window.location = ""
+   //              }
+   //          },
+   //          cache: false,
+   //          contentType: false,
+   //          processData: false
+   //      });
+   //  });
+    // end
 </script>            
 
 {% endblock %}

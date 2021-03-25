@@ -35,13 +35,11 @@ action="{% url 'login' %}">
 <div class="form-group d-flex">
 <input type="password" class="form-control rounded-left" id="id_password" name="password" placeholder="PASSWORD" required>
 </div>
-<div class="card-footer text-center">
 {% for message in messages %}
-<p class=" btn btn-outline-danger btn-lg active">
-    {{message}}
-</p>
-{% endfor %}
+<div class="card-footer text-center">
+<p class=" btn btn-outline-danger btn-lg active">{{message}}</p>
 </div>
+{% endfor %}
 <div class="form-group d-md-flex">
 <div class="w-50">
 <label class="checkbox-wrap checkbox-primary">REMEMBER ME

@@ -99,8 +99,9 @@ def updatebooking(request, pk):
     if request.method == "POST":
         form = Bookingform(request.POST ,request.FILES,instance=bookings)
         if form.is_valid():
+            x = form.cleaned_data['booking_receipt']
+            print(x)
             form.save()
-        
             messages.success(request, f'BOOKING UPDATED!')
             return redirect('sales')
 

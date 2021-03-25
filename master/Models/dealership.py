@@ -1,17 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser
+
+# from django.contrib.auth.models import User
 
 
 class Dealership(models.Model):
-	Name = models.CharField(max_length = 50, unique = True)
-	address = models.CharField(max_length = 50)
-	state = models.CharField(max_length = 50)
-	city = models.CharField(max_length = 50)
-	pincode = models.IntegerField()
+    # Account = models.OneToOneField(User, on_delete=models.CASCADE)
+    Name = models.CharField(max_length=50)
+    address = models.TextField()
+    state = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    pincode = models.IntegerField()
 
-
-	def __str__(self):
-		return self.Name
+    def __str__(self):
+        return f'{self.Name}'
 
 
 # class CustomUser(AbstractUser):

@@ -45,7 +45,14 @@ class Salesbooking(models.Model):
     quotation = models.FileField(null=True, blank=True, upload_to=user_directory_path)
     order_form = models.FileField(
         null=True, blank=True, upload_to=user_directory_path)
-
+    Delivery_Order = models.FileField(
+        null=True, blank=True, upload_to=user_directory_path)
+    Consume_offer = models.FloatField(default = 0)
+    Exchange_bonus = models.FloatField(default = 0)
+    Corporate_discount = models.FloatField(default = 0)
+    Remarks = models.CharField(max_length = 50)
+    Dealer_discount = models.FloatField(default = 0)
+    Total_discount = models.FloatField(default = 0)
 
 
     # def getDict(self):

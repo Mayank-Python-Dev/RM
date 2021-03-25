@@ -13,6 +13,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
+# from .models import CustomUser
 
 admin.site.register(Brand)
 admin.site.register(Model)
@@ -26,7 +27,7 @@ admin.site.register(Dealership)
 # 	add_form = UserCreationForm
 # 	form = UserChangeForm
 # 	model = CustomUser
-# 	list_displays = ['pk', 'email', 'username', 'first_name', 'last_name']
+# 	list_displays = ['pk', 'email', 'username', 'first_name', 'last_name','Dealership']
 
 # 	add_fieldsets = UserAdmin.add_fieldsets + (
 #     (None, {'fields': ('Dealership',)}),

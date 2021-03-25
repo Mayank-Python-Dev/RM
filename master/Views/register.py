@@ -18,49 +18,52 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.http import HttpResponse
 
-from django.contrib.auth.models import User
+from users.models import CustomUser
 
 from django.contrib.auth.models import Group
 
+
 def select_groups(request):
-    return render(request,'createdealershipandaccounts/groups.html')
+    return render(request, 'createdealershipandaccounts/groups.html')
 
 
 def register_sales(request):
-    if request.method == 'POST':    
-        form = CreateUserForm(request.POST)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            print(user)
+            messages.success(request, f'ACCOUNT CREATED!')
             username = form.cleaned_data.get('username')
-            group = Group.objects.get(name = 'Sales')
+            group = Group.objects.get(name='Sales')
             user.groups.add(group)
-            return redirect('groups')
+            return redirect('registersales')
+        else:
+            messages.warning(request, f'USERNAME IS ALREADY EXISTS!')
+            return redirect('registersales')
 
     else:
-        form = CreateUserForm()
-        return render(request, 'createdealershipandaccounts/createsalesaccount.html', {'form':form})
+        form = CustomUserCreationForm()
+        return render(request, 'createdealershipandaccounts/createsalesaccount.html', {'form': form})
 
 
 def register_headoffice(request):
-    if request.method == 'POST':    
-        form = CreateUserForm(request.POST)
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             print(user)
             username = form.cleaned_data.get('username')
-            group = Group.objects.get(name = 'Ho')
+            group = Group.objects.get(name='Ho')
             user.groups.add(group)
             return redirect('groups')
 
     else:
-        form = CreateUserForm()
-        return render(request, 'createdealershipandaccounts/createheadoffice.html', {'form':form})
-
+        form = CustomUserCreationForm()
+        return render(request, 'createdealershipandaccounts/createheadoffice.html', {'form': form})
 
 
 # def register_sales(request):
-#     if request.method == 'POST':    
+#     if request.method == 'POST':
 #         form = CreateUserForm(request.POST)
 #         if form.is_valid():
 #             user = form.save()
@@ -75,9 +78,8 @@ def register_headoffice(request):
 #         return render(request, 'createdealershipandaccounts/createsalesaccount.html', {'form':form})
 
 
-
 # def register_sales(request):
-#     if request.method == 'POST':    
+#     if request.method == 'POST':
 #         form = CreateUserForm(request.POST)
 #         if form.is_valid():
 #             user = form.save()
@@ -90,3 +92,9 @@ def register_headoffice(request):
 #     else:
 #         form = CreateUserForm()
 #         return render(request, 'createdealershipandaccounts/createsalesaccount.html', {'form':form})
+
+
+def dealership(request):
+    Dealerships = Dealership.objects.all()
+    context = {'Dealerships': Dealerships}
+    return render(request, 'createdealershipandaccounts/dealershipview.html', context)

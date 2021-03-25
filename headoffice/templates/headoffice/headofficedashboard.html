@@ -29,28 +29,25 @@
                 <thead>
                   <tr>
                     <th>Bookin ID</th>
-                    <th>Customer</th>
-                    <th>Model</th>
-                    <th>Booking Date</th>
-                    <th>Status</th>
-                    <th>View</th>
+                    <th>Booking Details</th>
+                    <th>Approve</th>
+                    <th>Reject</th>
+                    <th>Details</th>
+                    
                   </tr>
                 </thead>
 
                 <tbody>
-                  {% for field in sales %}
+                
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td>td>
-                    <td></td>
-                    <td class="text-danger">Pending</td>
-                    <td>
-                      
-                      <a href = "{% url 'Modification' field.Booking_ID %}"><button type="button" class="btn btn-info">View</button></a>
-                    </td>
+                    <td>2</td>
+                    <td><a class="btn btn-outline-secondary btn-sm" href="">BOOKING DETAILS</a></td>
+                    <td><a class="btn btn-outline-success btn-sm" href="">APPROVE</a></td>
+                    <td><a class="btn btn-outline-warning btn-sm" href="">REJECT</a></td>
+                    <td><a class="btn btn-outline-info btn-sm" href="">DETAILS</a></td>
+  
                   </tr>
-                  {% endfor %}
+                  
                 </tbody>
               </table>
             </div>

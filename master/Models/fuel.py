@@ -10,7 +10,7 @@ fueltype = (
 	)
 
 class Fuel(models.Model):
-    Name = models.CharField(max_length=20,choices = fueltype)
+    Name = models.CharField(max_length=20,choices = fueltype , unique = True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
 

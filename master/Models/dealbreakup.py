@@ -33,6 +33,12 @@ class Dealbreakup(models.Model):
 	extended_Warranty = models.FloatField()
 	amc = models.FloatField()
 	on_Road_Price = models.FloatField()
+	consume_offer = models.FloatField(default = 0)
+	exchange_bonus = models.FloatField(default = 0)
+	corporate_discount = models.FloatField(default = 0)
+	remarks = models.CharField(max_length = 50)
+	dealer_discount = models.FloatField(default = 0)
+	total_discount = models.FloatField(default = 0)
 
 	def __str__(self):
 		return f'{self.model} Pricelist'

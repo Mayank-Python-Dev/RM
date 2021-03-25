@@ -6,7 +6,7 @@ from .fuel import Fuel
 
 
 class Variant(models.Model):
-    Name = models.CharField(max_length=20)
+    Name = models.CharField(max_length=20 , unique = True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
     fuel = models.ForeignKey(Fuel, on_delete=models.CASCADE)
