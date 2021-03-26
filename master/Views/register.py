@@ -55,7 +55,7 @@ def register_headoffice(request):
             username = form.cleaned_data.get('username')
             group = Group.objects.get(name='Ho')
             user.groups.add(group)
-            return redirect('groups')
+            return redirect('registerheadoffice')
 
     else:
         form = CustomUserCreationForm()
@@ -98,3 +98,41 @@ def dealership(request):
     Dealerships = Dealership.objects.all()
     context = {'Dealerships': Dealerships}
     return render(request, 'createdealershipandaccounts/dealershipview.html', context)
+
+
+def register_edp(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm()
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, f'ACCOUNT CREATED!')
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='edp')
+            user.groups.add(group)
+            return redirect('registeredp')
+        else:
+            messages.warning(request, f'USERNAME IS ALREADY EXISTS!')
+            return redirect('registeredp')
+
+    else:
+        form = CustomUserCreationForm()
+        return render(request, 'createdealershipandaccounts/createedp.html', {'form': form})
+
+
+def register_account(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm()
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, f'ACCOUNT CREATED!')
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='account')
+            user.groups.add(group)
+            return redirect('registeraccount')
+        else:
+            messages.warning(request, f'USERNAME IS ALREADY EXISTS!')
+            return redirect('registeraccount')
+
+    else:
+        form = CustomUserCreationForm()
+        return render(request, 'createdealershipandaccounts/createaccount.html', {'form': form})

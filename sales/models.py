@@ -15,10 +15,12 @@ from master.Models.fuel import *
 
 from master.Models.model import *
 
-from django.contrib.auth.models import User ,Group
+from django.contrib.auth.models import User, Group
+
 
 def user_directory_path(instance, filename):
     return '{0}/{1}'.format(instance.customer_name, filename)
+
 
 class Salesbooking(models.Model):
     booking_ID = models.CharField(max_length=20)
@@ -42,22 +44,21 @@ class Salesbooking(models.Model):
     On_Road_Price = models.FloatField()
     booking_receipt = models.FileField(
         null=True, blank=True, upload_to=user_directory_path)
-    quotation = models.FileField(null=True, blank=True, upload_to=user_directory_path)
+    quotation = models.FileField(
+        null=True, blank=True, upload_to=user_directory_path)
     order_form = models.FileField(
         null=True, blank=True, upload_to=user_directory_path)
     Delivery_Order = models.FileField(
         null=True, blank=True, upload_to=user_directory_path)
-    Consume_offer = models.FloatField(default = 0)
-    Exchange_bonus = models.FloatField(default = 0)
-    Corporate_discount = models.FloatField(default = 0)
-    Remarks = models.CharField(max_length = 50)
-    Dealer_discount = models.FloatField(default = 0)
-    Total_discount = models.FloatField(default = 0)
+    Consume_offer = models.FloatField(default=0)
+    Exchange_bonus = models.FloatField(default=0)
+    Corporate_discount = models.FloatField(default=0)
+    Remarks = models.CharField(max_length=50)
+    Dealer_discount = models.FloatField(default=0)
+    Total_discount = models.FloatField(default=0)
 
+    def __str__(self):
+        return self.customer_name
 
-    # def getDict(self):
-    #     return vars(self)
-    class Meta:
-        ordering = ['customer_name']
-        def __str__(self):
-            return f"{self.customer_name}"
+    def getDict(self):
+        return vars(self)

@@ -1,0 +1,43 @@
+{% extends 'headoffice/headofficebase.html' %}
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid pt-2">
+            <ol class="breadcrumb mb-4 bg-white">
+                <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">HeadOffice View</li>
+            </ol>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100%" cellspacing="0">
+
+                                <tbody>
+                                    {% for key,value in detail.items %}
+                                    {% if key != '_state' %}
+                                    <tr>
+
+                                        <td>
+                                            <h5>{{key}}</h5>
+                                        </td>
+                                        <td>
+                                            <h6>{{value}}</h6>
+                                        </td>
+
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

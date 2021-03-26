@@ -13,17 +13,17 @@
         </div>
       </ol>
       <style type="text/css">
-                div.message {
-            text-align: right;
-              } 
-              </style>
-              <div class="message">
-                {% for message in messages %}
-          <div class="alert alert-success">
-            <h1 class="display-6">{{message}}</h1> 
-          </div>
-          {% endfor %}
+        div.message {
+          text-align: right;
+        }
+      </style>
+      <div class="message">
+        {% for message in messages %}
+        <div class="alert alert-success">
+          <h1 class="display-6">{{message}}</h1>
         </div>
+        {% endfor %}
+      </div>
       <div class="card mb-4">
         <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
           data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}"
@@ -47,30 +47,30 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.address|as_crispy_field}} 
+                  {{form.address|as_crispy_field}}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.pincode|as_crispy_field}} 
+                  {{form.pincode|as_crispy_field}}
                 </div>
               </div>
-                
+
             </div>
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
                   {{form.city|as_crispy_field}}
                 </div>
-              </div>  
-             </div>
-             <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
+              </div>
             </div>
-           </form>
+            <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
           </div>
-         </div>
-        </main>
-       </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
 
 
 {% endblock %}

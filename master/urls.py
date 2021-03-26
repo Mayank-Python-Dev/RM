@@ -3,7 +3,7 @@ from django.urls import path
 
 from .import views
 
-from .Views import brand, model, variant, fuel, colour, form, pricelistview, updatepricelist , dealership ,register
+from .Views import brand, model, variant, fuel, colour, form, pricelistview, updatepricelist, dealership, register
 
 
 urlpatterns = [
@@ -49,12 +49,15 @@ urlpatterns = [
     path('ajax/load-colours/', views.load_colours, name='ajax_load_colours'),
 
 
-    #dealership
-    path('dealership/',dealership.createdealership,name = 'dealership'),
-    path('selectgroups/',register.select_groups,name = 'groups'),
-    path('selectgroups/sales',register.register_sales,name = 'registersales'),
-    path('selectgroups/headoffice',register.register_headoffice,name = 'registerheadoffice'),
-    path('dealershipview/',register.dealership,name = 'dealershipview'),
+    # dealership
+    path('dealership/', dealership.createdealership, name='dealership'),
+    path('selectgroups/', register.select_groups, name='groups'),
+    path('selectgroups/sales', register.register_sales, name='registersales'),
+    path('selectgroups/headoffice', register.register_headoffice,
+         name='registerheadoffice'),
+    path('dealershipview/', register.dealership, name='dealershipview'),
+    path('selectgroups/EDP', register.register_edp, name='registeredp'),
+    path('selectgroups/account', register.register_account, name='registeraccount'),
 
 
 ]
