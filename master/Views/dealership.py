@@ -23,7 +23,7 @@ def createdealership(request):
 			form.save()
 
 			messages.success(request,f'DEALERSHIP CREATED')
-			return redirect('dealership')
+			return redirect('dealershipview')
 			
 	form = Dealershipform()
 	context = {'form' : form}

@@ -15,6 +15,8 @@ from master.Models.fuel import *
 
 from master.Models.model import *
 
+from master.Models.dealership import *
+
 from django.contrib.auth.models import User, Group
 
 
@@ -23,6 +25,7 @@ def user_directory_path(instance, filename):
 
 
 class Salesbooking(models.Model):
+    # Dealer = models.ForeignKey(Dealership,on_delete = models.CASCADE ,null = True)
     booking_ID = models.CharField(max_length=20)
     customer_name = models.CharField(max_length=50)
     contact_number = models.CharField(max_length=50)

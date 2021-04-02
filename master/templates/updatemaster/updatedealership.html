@@ -1,0 +1,50 @@
+{% extends 'master/masterbase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="layoutSidenav_content">
+	    <main>
+	        <div class="container-fluid pt-2">
+	            <ol class="breadcrumb mb-4 bg-white ">
+	                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+	                <li class="breadcrumb-item active">Master View</li>  
+                  <div class="align-self-end ml-auto"> 
+                <a class="btn btn-secondary  btn-sm" href="{% url 'dealershipview' %}">BACK</a> 
+                </div> 
+	            </ol>
+
+
+
+	            <div class="card mb-4">
+	                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Update Dealership </div>
+
+	                    <div class="col-md-12	">
+	                                <div class="form-group">
+	                                	<form method="Post" action="">
+          								{% csrf_token %}
+          <!-- <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div> -->
+          									<div class="card-body px-0">
+           
+              									<div class="form-row">
+               										 <div class="col-md-12">
+                  										<div class="form-group">
+                    									{% for fm in form %}
+                    									{{fm|as_crispy_field}}
+                    									{% endfor %}
+                  										</div>
+                									</div>
+               									</div>
+               									<input class="btn float-right btn-outline-primary col-lg-4	" type=submit value="Save"/>
+              								</div>
+          								</form>
+          							</div>
+          						</div>
+          					</div>
+          				</div>
+          			</main>
+          		</div>
+
+	                                	
+
+
+{% endblock %}
+

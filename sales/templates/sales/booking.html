@@ -43,7 +43,8 @@
       <div class="modal-body">
         <div class="m-2 p-3">
 
-          <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}" enctype="multipart/form-data">
+          <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
+            enctype="multipart/form-data">
             <div class="card-header"> <i class="fas fa-table mr-1"></i> Customer Booking </div>
             <div class="card-body px-0 upperFilter">
 
@@ -168,95 +169,96 @@
               </div>
 
 
-               <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
-            <div class="card-body px-0 lowerValue">
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Consume_offer|as_crispy_field}}
+              <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
+              <div class="card-body px-0 lowerValue">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Consume_offer|as_crispy_field}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Exchange_bonus|as_crispy_field}}
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Exchange_bonus|as_crispy_field}}
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Corporate_discount|as_crispy_field}}
+                    </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Remarks|as_crispy_field}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Dealer_discount|as_crispy_field}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Total_discount|as_crispy_field}}
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="card mb-4">
+
+                  <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+
+                  <table class="table table-bordered">
+                    <tr>
+                      <th>Booking Reciept</th>
+                      <th>{{Form.booking_receipt}}</th>
+
+                    </tr>
+                    <tr>
+                      <th>Quotation</th>
+                      <th>{{Form.quotation}}</th>
+
+
+                    </tr>
+                    <tr>
+                      <th>Order Form</th>
+                      <th>{{Form.order_form}}</th>
+
+
+                    </tr>
+                    <tr>
+                      <th>Delivery Order</th>
+                      <th>{{Form.Delivery_Order}}</th>
+
+                    </tr>
+
+                  </table>
+                </div>
+
+                <div class="form-group mt-4 mb-0">
+                  {% csrf_token %}
+
+                  <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
+
+
                 </div>
               </div>
-
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Corporate_discount|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Remarks|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Dealer_discount|as_crispy_field}}
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.Total_discount|as_crispy_field}}
-                  </div>
-                </div>
-              </div>
-
-
-              
-              <div class="card mb-4">
-
-                <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
-
-                <table class="table table-bordered">
-                  <tr>
-                    <th>Booking Reciept</th>
-                    <th>{{Form.booking_receipt}}</th>
-
-                  </tr>
-                  <tr>
-                    <th>Quotation</th>
-                    <th>{{Form.quotation}}</th>
-                    
-
-                  </tr>
-                  <tr>
-                    <th>Order Form</th>
-                    <th>{{Form.order_form}}</th>
-                    
-
-                  </tr>
-                   <tr>
-                    <th>Delivery Order</th>
-                    <th>{{Form.Delivery_Order}}</th>
-
-                  </tr>
-
-                </table>
-              </div>
-
-              <div class="form-group mt-4 mb-0">
-                {% csrf_token %}
-
-                <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
-
-
-              </div>
-            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!-- <script>
+
+<script>
   var score = 0;
   function getData() {
 
@@ -352,7 +354,7 @@
     });
 
   }
-</script> -->
+</script>
 
 
 

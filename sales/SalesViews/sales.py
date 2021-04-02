@@ -16,6 +16,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib import messages
 
+from django.contrib.auth.models import User
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Sales'])
@@ -30,6 +32,7 @@ def Booking(request):
             context = {'Form': Form}
             return redirect('sales')
     else:
+       
         Form = Bookingform()
         bookings = Salesbooking.objects.all()
 

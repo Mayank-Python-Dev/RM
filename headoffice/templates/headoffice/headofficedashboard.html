@@ -16,7 +16,7 @@
       <div class="card mb-4">
         <div class="card-header">
           <i class="fas fa-table mr-1"></i>
-          HeadOffice View
+          HeadOffice/{{user.dealershipname}}/{{user.dealershipname.address}}
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -24,6 +24,7 @@
               <thead>
                 <tr>
                   <th>Bookin ID</th>
+                  <th>Status</th>
                   <th>Booking Details</th>
                   <th>Approve</th>
                   <th>Reject</th>
@@ -36,17 +37,31 @@
 
                 <tr>
                   {% for booking in bookings %}
+
                   <td>{{booking.booking_ID}}</td>
+                  
+                  <td><span class="text-primary">{{messages}}</span></td>
+
                   <td><a class="btn btn-outline-secondary btn-sm"
                       href="{% url 'bookingdetails' booking.booking_ID %}">VIEW</a>
                   </td>
+                  {% if messages.message != "APPROVED" %}
                   <td><a class="btn btn-outline-success btn-sm"
                       href="{% url 'approve' booking.booking_ID %}">APPROVE</a></td>
+                  {% endif %}
                   <td><a class="btn btn-outline-warning btn-sm" href="{% url 'reject' booking.booking_ID %}">REJECT</a>
                   </td>
-                  <!-- <td><a class="btn btn-outline-info btn-sm" href="{% url 'approve' booking.booking_ID %}">DETAILS</a>
-                  </td> -->
+                  <td><a class="btn btn-outline-info btn-sm" href="#">DETAILS</a>
+                  </td>
                   {% endfor %}
+
+                
+                  
+                  
+
+                  
+
+
 
                 </tr>
               </tbody>

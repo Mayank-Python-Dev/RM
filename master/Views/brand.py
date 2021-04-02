@@ -21,7 +21,7 @@ def brandlist(request):
     if request.method == 'POST':
         form = Brandform(request.POST)
         if form.is_valid():
-            form.save() 
+            form.save()
 
             messages.success(request, f'BRAND ADDED!')
             form = Brandform()
@@ -29,9 +29,9 @@ def brandlist(request):
             return redirect('brand')
 
         else:
-            messages.warning(request,f'BRAND ALREADY EXISTS')
+            messages.warning(request, f'BRAND ALREADY EXISTS')
             form = Brandform()
-            context = {'form':form}
+            context = {'form': form}
             return redirect('brand')
     else:
         form = Brandform()

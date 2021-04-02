@@ -21,7 +21,7 @@
 				{% endfor %}
 			</div>
 			<div class="card mb-4">
-				<div class="card-header"> <i class="fas fa-table mr-1"></i> Dealership </div>
+				<div class="card-header"> <i class="fas fa-table mr-1"></i> Dealerships </div>
 
 
 
@@ -40,6 +40,8 @@
 										<th scope="col">State</th>
 										<th scope="col">City</th>
 										<th scope="col">Pincode</th>
+										<th scope="col">Update</th>
+										<th scope="col">Delete</th>
 
 
 									</tr>
@@ -54,6 +56,9 @@
 										<td>{{dealership.state}}</td>
 										<td>{{dealership.city}}</td>
 										<td>{{dealership.pincode}}</td>
+										 <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatedealership' dealership.id %}">UPDATE</a></td>
+
+					<td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletedealership' dealership.id %}">DELETE</a></td>
 
 										{% endfor %}
 

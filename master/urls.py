@@ -51,6 +51,8 @@ urlpatterns = [
 
     # dealership
     path('dealership/', dealership.createdealership, name='dealership'),
+    path('updatedealership/<str:pk>/',register.updatedealership,name = 'updatedealership'),
+    path('deletedealership/<str:pk>/',register.deletedealership,name = 'deletedealership'),
     path('selectgroups/', register.select_groups, name='groups'),
     path('selectgroups/sales', register.register_sales, name='registersales'),
     path('selectgroups/headoffice', register.register_headoffice,

@@ -3,251 +3,253 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
- <div id="layoutSidenav_content">
-    <main>
-      <div class="container-fluid pt-2">
-        <ol class="breadcrumb mb-4 bg-white ">
-          <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-          <li class="breadcrumb-item active">Sales Manager View</li>
-        </ol>
-        <div class="card mb-4">
-         <form method = "Post" enctype="multipart/form-data" id="id_ajax_upload_form">
-        <div class="card mb-4">
-          <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
-   
-   
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.booking_ID|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.customer_name|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.contact_number|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-           {{form.email|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Brand|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Model|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Variant|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Colour|as_crispy_field}}
-          </div>
-        </div>
-        
-      </div>
-   
-  </div>
-  
-   <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
-<div class="card-body px-0 lowerValue">     <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Ex_Showroom_Price|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Ins_AMT|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Rto|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.FASTag|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Tcs|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Total|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Acc|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Extended_Warranty|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Amc|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.On_Road_Price|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
-<div class="card-body px-0 lowerValue">     <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Consume_offer|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Exchange_bonus|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Corporate_discount|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Remarks|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Dealer_discount|as_crispy_field}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            {{form.Total_discount|as_crispy_field}}
-          </div>
-        </div>
-      </div>
-      
-      
-      
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid pt-2">
+      <ol class="breadcrumb mb-4 bg-white ">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Sales Manager View</li>
+      </ol>
       <div class="card mb-4">
-         
-        <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
-        
-        <table class="table table-bordered">
-        <tr>
-        <th>Booking Reciept</th>
-        <th>{{form.booking_receipt}}</th>
-        {% if form.is_multipart %}
-        <td><span class="text-success">SUBMITTED</span></td>
-        {% else %}
-        <td><span class="text-danger">PENDING</span></td>
-        {% endif %}
-        
-        </tr>
-        <tr>
-        <th>Quotation</th>
-        <th>{{form.quotation}}</th> 
-        {% if form.is_multipart %}
-        <td><span class="text-success">SUBMITTED</span></td>
-        {% else  %}
-        <td><span class="text-danger">PENDING</span></td>
-        {% endif %}
-        
-        </tr>
-        <tr>
-        <th>Order Form</th>
-        <th>{{form.order_form}}</th>  
-        {% if form.is_multipart %}
-        <td><span class="text-success">SUBMITTED</span></td>
-        {% else %}
-        <td><span class="text-danger">PENDING</span></td>
-        {% endif %}
-        
-        </tr>
+        <form method="Post" enctype="multipart/form-data" id="id_ajax_upload_form">
+          <div class="card mb-4">
+            <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
 
-         </tr>
-        <tr>
-        <th>Delivery Order</th>
-        <th>{{form.Delivery_Order}}</th>  
-        {% if form.is_multipart %}
-        <td><span class="text-success">SUBMITTED</span></td>
-        {% else %}
-        <td><span class="text-danger">PENDING</span></td>
-        {% endif %}
-        
-        </tr>
-        
-        </table>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.booking_ID|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.customer_name|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.contact_number|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.email|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Brand|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Model|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Variant|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Colour|as_crispy_field}}
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
+          <div class="card-body px-0 lowerValue">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Ex_Showroom_Price|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Ins_AMT|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Rto|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.FASTag|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Tcs|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Total|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Acc|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Extended_Warranty|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Amc|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.On_Road_Price|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
+            <div class="card-body px-0 lowerValue">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Consume_offer|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Exchange_bonus|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Corporate_discount|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Remarks|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Dealer_discount|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.Total_discount|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="card mb-4">
+
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+
+                <table class="table table-bordered">
+                  <tr>
+                    <th>Booking Reciept</th>
+                    <th>{{form.booking_receipt}}</th>
+                    {% if form.is_multipart %}
+                    <td><span class="text-success">SUBMITTED</span></td>
+                    {% else %}
+                    <td><span class="text-danger">PENDING</span></td>
+                    {% endif %}
+
+                  </tr>
+                  <tr>
+                    <th>Quotation</th>
+                    <th>{{form.quotation}}</th>
+                    {% if form.is_multipart %}
+                    <td><span class="text-success">SUBMITTED</span></td>
+                    {% else %}
+                    <td><span class="text-danger">PENDING</span></td>
+                    {% endif %}
+
+                  </tr>
+                  <tr>
+                    <th>Order Form</th>
+                    <th>{{form.order_form}}</th>
+                    {% if form.is_multipart %}
+                    <td><span class="text-success">SUBMITTED</span></td>
+                    {% else %}
+                    <td><span class="text-danger">PENDING</span></td>
+                    {% endif %}
+
+                  </tr>
+
+                  </tr>
+                  <tr>
+                    <th>Delivery Order</th>
+                    <th>{{form.Delivery_Order}}</th>
+                    {% if form.is_multipart %}
+                    <td><span class="text-success">SUBMITTED</span></td>
+                    {% else %}
+                    <td><span class="text-danger">PENDING</span></td>
+                    {% endif %}
+
+                  </tr>
+
+                </table>
+              </div>
+
+              <div class="form-group mt-4 mb-0">
+                {% csrf_token %}
+
+                <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
+
+
+              </div>
+            </div>
+        </form>
+      </div>
     </div>
-
-      <div class="form-group mt-4 mb-0">
-        {% csrf_token %}
-
-        <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
-
-       
-      </div>
-      </div>
-    </form>
-  </div>
 </div>
 </div>
 </div>
-</div>
- <script type="text/javascript">
+<script type="text/javascript">
    // var score = 0;
    // function getData(){
-     
+
    //   var brand = $('#id_Brand').val();
    //   var id_Model = $('#id_Model').val();
    //   var id_Variant = $('#id_Variant').val();
@@ -255,7 +257,7 @@
    //  if(brand=='' || id_Model=='' || id_Variant == '' || id_Colour == ''){
    //    if(window.score>0){
    //          $('.lowerValue .numberinput').val('');
-          
+
    //        }
    //    return false;
    //  }
@@ -267,12 +269,12 @@
    //      {
    //        if(window.score>0){
    //          $('.lowerValue .numberinput').val('');
-          
+
    //        }
    //        return false
    //      }
    //      window.score++;
-        
+
    //      var a = data[0].fields;
    //      $("#id_Ex_Showroom_Price").val(a.ex_Showroom_Price);
    //      $("#id_Ins_AMT").val(a.ins_AMT);
@@ -291,7 +293,7 @@
    //   $(".upperFilter select").change(function() {
    //    getData();
    //   });
-    
+
    // });
    //  $("#id_brand").change(function () {
    //     url = "";
@@ -337,6 +339,6 @@
    //      });
    //  });
     // end
-</script>            
+</script>
 
 {% endblock %}

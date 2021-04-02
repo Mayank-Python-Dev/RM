@@ -15,13 +15,21 @@
 
       <div class="card-header"> <i class="fas fa-table mr-1"></i> Select Groups </div>
 
-      <div class="card-body px-0">
-        <a href="{% url 'registersales' %}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Sales</a>
-        <a href="{% url 'registerheadoffice' %}" class="btn btn-primary btn-lg" role="button"
-          aria-disabled="true">HeadOffice</a>
-        <a href="{% url 'registeredp' %}" class="btn btn-primary btn-lg " role="button" aria-disabled="true">EDP</a>
-        <a href="{% url 'registeraccount' %}" class="btn btn-primary btn-lg " role="button"
-          aria-disabled="true">Account</a>
+      <div class="card-body text-center px-0">
+        <a href="{% url 'registersales' %}" class="btn btn-dark btn-lg" role="button" aria-disabled="true">
+          <h1 class="display-5">Sales</h1>
+        </a>
+        <a href="{% url 'registerheadoffice' %}" class="btn btn-dark btn-lg" role="button" aria-disabled="true">
+          <h1 class="display-5">HeadOffice</h1>
+        </a>
+        <a href="{% url 'registeredp' %}" class="btn btn-dark btn-lg " role="button" aria-disabled="true">
+          <h1 class="display-5">EDP</h1>
+        </a>
+        <a href="{% url 'registeraccount' %}" class="btn btn-dark btn-lg " role="button" aria-disabled="true">
+          <h1 class="display-5">Account</h1>
+        </a>
       </div>
+
+
 
       {% endblock %}

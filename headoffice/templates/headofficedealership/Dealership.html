@@ -23,33 +23,32 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Dealership</th>
-                                    <th>Dealership</th>
-                                    <th>Dealership</th>
-                                    <th>Dealership</th>
-                                    <th>Dealership</th>
+                                    <th scope="col">Status</th>
+                                        <th scope="col">Dealership</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">State</th>
+                                        
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dealership in Dealerships %}
+                                    <tr>
+
+                                        <td>Pending</td>
+                                        <td>{{dealership.Name}}</td>
+                                        <td>{{dealership.address}}</td>
+                                        <td>{{dealership.state}}</td>
+                                        
+
+                                        {% endfor %}
+
+
+            
 
                                 </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <!-- {% for booking in bookings %}
-                                    <td>{{booking.booking_ID}}</td>
-                                    <td><a class="btn btn-outline-secondary btn-sm"
-                                            href="{% url 'bookingdetails' booking.booking_ID %}">VIEW</a>
-                                    </td>
-                                    <td><a class="btn btn-outline-success btn-sm"
-                                            href="{% url 'approve' booking.booking_ID %}">APPROVE</a></td>
-                                    <td><a class="btn btn-outline-warning btn-sm"
-                                            href="{% url 'reject' booking.booking_ID %}">REJECT</a>
-                                    </td>
-                                    <td><a class="btn btn-outline-info btn-sm" href="{% url 'approve' booking.booking_ID %}">DETAILS</a>
-                  </td>
-                                    {% endfor %} -->
-
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
