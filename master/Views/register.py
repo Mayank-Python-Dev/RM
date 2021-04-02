@@ -28,7 +28,36 @@ from users.admin import *
 
 
 def select_groups(request):
-    return render(request, 'createdealershipandaccounts/groups.html')
+    users = CustomUser.objects.all()
+    context = {'users': users}
+    return render(request, 'createdealershipandaccounts/groups.html', context)
+
+
+def update_groups(request, pk):
+    Users = CustomUser.objects.get(id=pk)
+    form = CustomUserCreationForm(instance=Users)
+
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST, instance=Users)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, f'USER UPDATED!')
+            return redirect('groups')
+
+    context = {'form': form}
+    return render(request, 'updatemaster/updategroups.html', context)
+
+
+def delete_groups(request, pk):
+    Users = CustomUser.objects.get(id=pk)
+    if request.method == "POST":
+        Users.delete()
+        messages.warning(request, f'USER DELETED!')
+        return redirect('groups')
+
+    context = {'Users': Users}
+    return render(request, 'deletemaster/deletegroups.html', context)
 
 
 def register_sales(request):
@@ -99,8 +128,16 @@ def register_headoffice(request):
 
 
 def dealership(request):
+    if request.method == "POST":
+        form = Dealershipform(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'DEALERSHIP CREATED')
+            return redirect('dealershipview')
+
+    form = Dealershipform()
     Dealerships = Dealership.objects.all()
-    context = {'Dealerships': Dealerships}
+    context = {'Dealerships': Dealerships, 'form': form}
     return render(request, 'createdealershipandaccounts/dealershipview.html', context)
 
 

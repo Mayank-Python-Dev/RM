@@ -12,4 +12,4 @@ class Variant(models.Model):
     fuel = models.ForeignKey(Fuel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.Name
+        return f'{self.Name}/{self.fuel}'

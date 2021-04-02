@@ -22,6 +22,9 @@
 			</div>
 			<div class="card mb-4">
 				<div class="card-header"> <i class="fas fa-table mr-1"></i> Dealerships </div>
+				 <div class="m-3 p-3">
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">CREATE DEALERSHIP</a>
+        </div>
 
 
 
@@ -79,7 +82,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					ADD FUEL TYPE
+					CREATE DEALERSHIP
 				</h5>
 				<hr>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -101,7 +104,7 @@
 	</div>
 </div>
 
-<script>
+<!-- <script>
 	$("#id_brand").change(function () {
 		const url = $("#personForm").attr("data-models-url");  // get the url of the `load_cities` view
 		const brandId = $(this).val();  // get the selected country ID from the HTML input
@@ -126,5 +129,5 @@
 
 	});
 </script>
-
+ -->
 {% endblock %}

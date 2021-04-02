@@ -10,19 +10,19 @@
 				<li class="breadcrumb-item active">Master View</li>
 			</ol>
 			<div class="card mb-4">
-				<div class="card-header"> <i class="fas fa-table mr-1"></i> Delete Dealership </div>
+				<div class="card-header"> <i class="fas fa-table mr-1"></i> Delete Users </div>
 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card card-body">
 
-							<h1 class="display-4">Are you sure you want to delete <h1 class="display-6">
-									"{{Dealerships}}"?</h1>
+							<h1 class="display-4">Are you sure you want to delete this user <h1 class="display-6">
+									"{{Users}}"?</h1>
 
-								<form action="{% url 'deletedealership' Dealerships.id  %}" method="POST">
+								<form action="" method="POST">
 
 									{% csrf_token %}
-									<a class="btn btn-warning btn-lg" href="{% url 'dealershipview' %}">Cancel</a>
+									<a class="btn btn-warning btn-lg" href="{% url 'groups' %}">Cancel</a>
 									<button type="submit" class="btn btn-danger btn-lg">Delete</button>
 
 								</form>

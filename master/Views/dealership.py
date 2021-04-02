@@ -16,15 +16,15 @@ from django.contrib.auth.decorators import login_required
 
 
 
-def createdealership(request):
-	if request.method =="POST":
-		form = Dealershipform(request.POST)
-		if form.is_valid():
-			form.save()
+# def createdealership(request):
+# 	if request.method =="POST":
+# 		form = Dealershipform(request.POST)
+# 		if form.is_valid():
+# 			form.save()
 
-			messages.success(request,f'DEALERSHIP CREATED')
-			return redirect('dealershipview')
+# 			messages.success(request,f'DEALERSHIP CREATED')
+# 			return redirect('dealershipview')
 			
-	form = Dealershipform()
-	context = {'form' : form}
-	return render(request,'createdealershipandaccounts/dealership.html',context)
+# 	form = Dealershipform()
+# 	context = {'form' : form}
+# 	return render(request,'createdealershipandaccounts/dealership.html',context)

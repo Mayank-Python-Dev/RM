@@ -50,9 +50,11 @@ urlpatterns = [
 
 
     # dealership
-    path('dealership/', dealership.createdealership, name='dealership'),
-    path('updatedealership/<str:pk>/',register.updatedealership,name = 'updatedealership'),
-    path('deletedealership/<str:pk>/',register.deletedealership,name = 'deletedealership'),
+    # path('dealership/', dealership.createdealership, name='dealership'),
+    path('updatedealership/<str:pk>/',
+         register.updatedealership, name='updatedealership'),
+    path('deletedealership/<str:pk>/',
+         register.deletedealership, name='deletedealership'),
     path('selectgroups/', register.select_groups, name='groups'),
     path('selectgroups/sales', register.register_sales, name='registersales'),
     path('selectgroups/headoffice', register.register_headoffice,
@@ -60,6 +62,10 @@ urlpatterns = [
     path('dealershipview/', register.dealership, name='dealershipview'),
     path('selectgroups/EDP', register.register_edp, name='registeredp'),
     path('selectgroups/account', register.register_account, name='registeraccount'),
+    path('selectgroups/update/<str:pk>/',
+         register.update_groups, name='updategroups'),
+    path('selectgroups/delete/<str:pk>/',
+         register.delete_groups, name='deletegroups'),
 
 
 ]

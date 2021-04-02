@@ -4,14 +4,10 @@ from .brand import Brand
 from .model import Model
 
 
-fueltype = (
-    ('Petrol', 'Petrol'),
-    ('Diesel', 'Diesel'),
-)
 
 
 class Fuel(models.Model):
-    Name = models.CharField(max_length=20, choices=fueltype)
+    Name = models.CharField(max_length=20)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-#Register your models here.
+# Register your models here.
 from .Models.brand import *
 from .Models.model import *
 from .Models.colour import *

@@ -21,7 +21,7 @@ from django.contrib.auth.models import User, Group
 
 
 def user_directory_path(instance, filename):
-    return '{0}/{1}'.format(instance.customer_name, filename)
+    return '{0}/{1}'.format(instance.booking_ID, filename)
 
 
 class Salesbooking(models.Model):

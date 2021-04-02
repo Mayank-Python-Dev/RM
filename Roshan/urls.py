@@ -17,25 +17,33 @@ from django.contrib import admin
 
 from django.urls import path, include
 
-from django.views.generic.base import TemplateView # new
+from django.views.generic.base import TemplateView  # new
 
 from django.conf.urls.static import static
 
 from django.conf import settings
+
+from django.contrib.auth import views as auth_views
+
+from django.conf.urls import url
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('master/', include('master.urls')),
-    path('sales/',include('sales.urls')),
-    path('headoffice/',include('headoffice.urls')),
-    # path('accounts/', include('django.contrib.auth.urls'),name='login'), 
-    # path('', TemplateView.as_view(template_name='registration/home.html'), name='home'), 
-    path('',include('login.urls')),
-    
+    path('sales/', include('sales.urls')),
+    path('headoffice/', include('headoffice.urls')),
+    # url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
+    # url(r'^logout/$', auth_views.logout, name='logout'),
+    # path('accounts/', include('django.contrib.auth.urls'),name='login'),
+    # path('', TemplateView.as_view(template_name='registration/home.html'), name='home'),
+    path('login/', include('login.urls')),
+    # url(r"^accounts/", include("django.contrib.auth.urls")),
+
 
 ]
 
 if settings.DEBUG:
-    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
