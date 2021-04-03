@@ -48,7 +48,6 @@ urlpatterns = [
     path('ajax/load-variants/', views.load_variants, name='ajax_load_variants'),
     path('ajax/load-colours/', views.load_colours, name='ajax_load_colours'),
 
-
     # dealership
     # path('dealership/', dealership.createdealership, name='dealership'),
     path('updatedealership/<str:pk>/',

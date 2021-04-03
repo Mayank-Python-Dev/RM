@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 @admin_only
 def dashboard(request):
-    forms = Dealbreakup.objects.all()
+    forms = Dealbreakup.objects.all()   
     context = {'forms': forms}
     return render(request, 'master/masterdashboard.html', context)
 

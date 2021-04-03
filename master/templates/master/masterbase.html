@@ -20,8 +20,7 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"> <a class="navbar-brand"
-            href="#">Master</a>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark"> <a class="navbar-brand" href="#">Master</a>
 
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i
                 class="fas fa-bars"></i></button>
@@ -53,7 +52,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Groups & Users
                         </a>
-                        
+
                         <a class="nav-link" href="{% url 'dealershipview' %}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Create & Dealership View
@@ -96,8 +95,11 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
+                    {% if user.is_authenticated %}
                     <div class="small">Logged in as:</div>
-                    Master
+                    {{user.username}}
+                    {% endif %}
+
                 </div>
             </nav>
         </div>

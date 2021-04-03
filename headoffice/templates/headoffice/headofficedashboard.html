@@ -24,46 +24,35 @@
               <thead>
                 <tr>
                   <th>Bookin ID</th>
-                  <th>Status</th>
                   <th>Booking Details</th>
                   <th>Approve</th>
                   <th>Reject</th>
-                  <th>Details</th>
+                  <th>Status</th>
 
                 </tr>
               </thead>
 
               <tbody>
-
                 <tr>
                   {% for booking in bookings %}
-
                   <td>{{booking.booking_ID}}</td>
-
-                  <td><span class="text-primary">{{messages}}</span></td>
-
                   <td><a class="btn btn-outline-secondary btn-sm"
                       href="{% url 'bookingdetails' booking.booking_ID %}">VIEW</a>
                   </td>
-                  {% if messages.message != "APPROVED" %}
                   <td><a class="btn btn-outline-success btn-sm"
-                      href="{% url 'approve' booking.booking_ID %}">APPROVE</a></td>
-                  {% endif %}
-                  <td><a class="btn btn-outline-warning btn-sm" href="{% url 'reject' booking.booking_ID %}">REJECT</a>
-                  </td>
-                  <td><a class="btn btn-outline-info btn-sm" href="#">DETAILS</a>
+                      href="{% url 'approve' booking.booking_ID %}">APPROVED</a></td>
+                  <td><a class="btn btn-outline-danger btn-sm" href="{% url 'reject' booking.booking_ID %}">REJECTED</a>
                   </td>
                   {% endfor %}
-
-
-
-
-
-
-
-
-
+                  {% for message in messages %}
+                  {% if message == APPROVED %}
+                  <td>{{ message }}</td>
+                  {% else %}
+                  <td>{{ message }}</td>
+                  {% endif %}
+                  {% endfor %}
                 </tr>
+
               </tbody>
             </table>
           </div>

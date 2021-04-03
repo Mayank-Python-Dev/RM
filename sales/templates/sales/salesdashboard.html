@@ -43,7 +43,7 @@
 
                     <th scope="col">Customer Name</th>
                     <th scope="col">Contact Number</th>
-                    <th>Car Details</th>
+                    <th>Car - Model - Variant_Type - Colour</th>
                     <th>Booking Date</th>
                     <th>Status</th>
                     <th scope="col">Update</th>
@@ -58,7 +58,7 @@
                     <th scope="row">{{booking.booking_ID}}</th>
                     <td>{{booking.customer_name}}</td>
                     <td>{{booking.contact_number}}</td>
-                    <td>{{booking.Brand}} {{booking.Model}} {{booking.Variant}} {{booking.Colour}}</td>
+                    <td>{{booking.Brand}}/{{booking.Model}}/{{booking.Variant}}/{{booking.Colour}}</td>
                     <td>{{booking.Date|date:"D,d M, Y"}}</td>
                     <td><span class=" text-danger">PENDING</span></td>
                     <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebooking' booking.id %}">UPDATE</a>

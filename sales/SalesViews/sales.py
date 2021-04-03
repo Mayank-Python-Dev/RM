@@ -24,7 +24,7 @@ from django.contrib.auth.models import User
 def Booking(request):
 
     if request.method == "POST":
-        Form = Bookingform(request.POST,request.FILES)
+        Form = Bookingform(request.POST, request.FILES)
         if Form.is_valid():
             Form.save()
             messages.success(request, f'BOOKING CREATED!')
@@ -32,7 +32,7 @@ def Booking(request):
             context = {'Form': Form}
             return redirect('sales')
     else:
-       
+
         Form = Bookingform()
         bookings = Salesbooking.objects.all()
 
@@ -100,7 +100,7 @@ def updatebooking(request, pk):
     bookings = Salesbooking.objects.get(id=pk)
     form = Bookingform(instance=bookings)
     if request.method == "POST":
-        form = Bookingform(request.POST ,request.FILES,instance=bookings)
+        form = Bookingform(request.POST, request.FILES, instance=bookings)
         if form.is_valid():
             x = form.cleaned_data['booking_receipt']
             print(x)

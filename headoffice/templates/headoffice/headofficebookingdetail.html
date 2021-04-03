@@ -10,11 +10,130 @@
                 </li>
                 <li class="breadcrumb-item active">HeadOffice View</li>
             </ol>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" width="100%" cellspacing="0">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Customer Details
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-info ">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">BookingID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">ContactNo.</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Model.</th>
+                                    <th scope="col">Variant</th>
+                                    <th scope="col">Colour</th>
+                                    <th scope="col">Date.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {% for booking in bookings %}
+                                    <th scope="row">{{booking.booking_ID}}</th>
+                                    <td>{{booking.customer_name}}</td>
+                                    <td>{{booking.contact_number}}</td>
+                                    <td>{{booking.email}}</td>
+                                    <td>{{booking.Brand}}</td>
+                                    <td>{{booking.Model}}</td>
+                                    <td>{{booking.Variant}}</td>
+                                    <td>{{booking.Colour}}</td>
+                                    <td>{{booking.Date | date:"Y-m-d H:i"}}</td>
+                                    {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> PRICE LIST </div>
+                <div class="card-body px-0">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <table class="table table-info">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Ex_Showroom_Price</th>
+                                        <th scope="col">Ins_AMT</th>
+                                        <th scope="col">Rto</th>
+                                        <th scope="col">FASTag</th>
+                                        <th scope="col">Tcs</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Acc</th>
+                                        <th scope="col">Extended_Warranty</th>
+                                        <th scope="col">Amc</th>
+                                        <th scope="col">On_Road_Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for booking in bookings %}
+                                        <td>{{booking.Ex_Showroom_Price}}</td>
+                                        <td>{{booking.Ins_AMT}}</td>
+                                        <td>{{booking.Rto}}</td>
+                                        <td>{{booking.FASTag}}</td>
+                                        <td>{{booking.Tcs}}</td>
+                                        <td>{{booking.Total}}</td>
+                                        <td>{{booking.Acc}}</td>
+                                        <td>{{booking.Extended_Warranty}}</td>
+                                        <td>{{booking.Amc}}</td>
+                                        <td>{{booking.On_Road_Price}}</td>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i>DISCOUNT & DOCUMENTS </div>
+                    <div class="card-body px-0">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <table class="table table-info">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">booking_receipt</th>
+                                            <th scope="col">quotation</th>
+                                            <th scope="col">order_form</th>
+                                            <th scope="col">Delivery_Order</th>
+                                            <th scope="col">Consumer_offer</th>
+                                            <th scope="col">Exchange_bonus</th>
+                                            <th scope="col">Corporate_discount</th>
+                                            <th scope="col">Remarks</th>
+                                            <th scope="col">Dealer_discount</th>
+                                            <th scope="col">Total_discount</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {% for booking in bookings %}
+                                            <td>{{booking.booking_receipt}}</td>
+                                            <td>{{booking.quotation}}</td>
+                                            <td>{{booking.order_form}}</td>
+                                            <td>{{booking.Delivery_Order}}</td>
+                                            <td>{{booking.Consumer_offer}}</td>
+                                            <td>{{booking.Exchange_bonus}}</td>
+                                            <td>{{booking.Corporate_discount}}</td>
+                                            <td>{{booking.Remarks}}</td>
+                                            <td>{{booking.Dealer_discount}}</td>
+                                            <td>{{booking.Total_discount}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <table class="table table-bordered" width="100%" cellspacing="0">
 
                                 <tbody>
                                     {% for key,value in detail.items %}
@@ -35,9 +154,9 @@
 
 
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
+                            </table> -->
                 </div>
             </div>
-            {% endblock %}
+        </div>
+</div>
+{% endblock %}
