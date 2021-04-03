@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     # bootstrap
     'crispy_forms',
     'users.apps.UsersConfig',
+    'edp.apps.EdpConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [

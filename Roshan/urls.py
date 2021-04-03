@@ -34,6 +34,8 @@ urlpatterns = [
     path('master/', include('master.urls')),
     path('sales/', include('sales.urls')),
     path('headoffice/', include('headoffice.urls')),
+    path('edp/', include('edp.urls')),
+    path('account/', include('account.urls')),
     # url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     # url(r'^logout/$', auth_views.logout, name='logout'),
     # path('accounts/', include('django.contrib.auth.urls'),name='login'),
