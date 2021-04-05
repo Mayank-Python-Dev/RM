@@ -174,7 +174,7 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      {{Form.Consume_offer|as_crispy_field}}
+                      {{Form.Consumer_offer|as_crispy_field}}
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -209,48 +209,75 @@
                     </div>
                   </div>
                 </div>
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
+                <div class="card-body px-0 lowerValue">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Down_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Finance|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Used_car|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Total_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
 
 
 
-                <div class="card mb-4">
 
-                  <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+                  <div class="card mb-4">
 
-                  <table class="table table-bordered">
-                    <tr>
-                      <th>Booking Reciept</th>
-                      <th>{{Form.booking_receipt}}</th>
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
 
-                    </tr>
-                    <tr>
-                      <th>Quotation</th>
-                      <th>{{Form.quotation}}</th>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Booking Reciept</th>
+                        <th>{{Form.booking_receipt}}</th>
 
-
-                    </tr>
-                    <tr>
-                      <th>Order Form</th>
-                      <th>{{Form.order_form}}</th>
+                      </tr>
+                      <tr>
+                        <th>Quotation</th>
+                        <th>{{Form.quotation}}</th>
 
 
-                    </tr>
-                    <tr>
-                      <th>Delivery Order</th>
-                      <th>{{Form.Delivery_Order}}</th>
+                      </tr>
+                      <tr>
+                        <th>Order Form</th>
+                        <th>{{Form.order_form}}</th>
 
-                    </tr>
 
-                  </table>
+                      </tr>
+                      <tr>
+                        <th>Delivery Order</th>
+                        <th>{{Form.Delivery_Order}}</th>
+
+                      </tr>
+
+                    </table>
+                  </div>
+
+                  <div class="form-group mt-4 mb-0">
+                    {% csrf_token %}
+
+                    <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
+
+
+                  </div>
                 </div>
-
-                <div class="form-group mt-4 mb-0">
-                  {% csrf_token %}
-
-                  <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
-
-
-                </div>
-              </div>
           </form>
         </div>
       </div>

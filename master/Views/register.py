@@ -42,7 +42,7 @@ def update_groups(request, pk):
         if form.is_valid():
             form.save()
 
-            messages.success(request, f'USER UPDATED!')
+            messages.info(request, f'USER UPDATED!')
             return redirect('groups')
 
     context = {'form': form}
@@ -150,6 +150,8 @@ def updatedealership(request, pk):
         if form.is_valid():
             form.save()
 
+            messages.info(request, f'DEALERSHIP UPDATED!')
+
             return redirect('dealershipview')
 
     context = {'form': form}
@@ -160,6 +162,7 @@ def deletedealership(request, pk):
     Dealerships = Dealership.objects.get(id=pk)
     if request.method == "POST":
         Dealerships.delete()
+        messages.warning(request, f'DEALERSHIP DELETED!')
         return redirect('dealershipview')
 
     context = {'Dealerships': Dealerships}

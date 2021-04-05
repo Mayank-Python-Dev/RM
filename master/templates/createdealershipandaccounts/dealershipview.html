@@ -15,16 +15,17 @@
 			</style>
 			<div class="message">
 				{% for message in messages %}
-				<div class="alert alert-success">
-					<h1 class="display-6">{{message}}</h1>
+				<div class="alert alert-{{message.tags}}">
+					<h3>{{message}}</h3>
 				</div>
 				{% endfor %}
 			</div>
 			<div class="card mb-4">
 				<div class="card-header"> <i class="fas fa-table mr-1"></i> Dealerships </div>
-				 <div class="m-3 p-3">
-            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">CREATE DEALERSHIP</a>
-        </div>
+				<div class="m-3 p-3">
+					<a href="#" data-toggle="modal" data-target="#exampleModal"
+						class="btn btn-outline-info border rounded  col-lg-3 float-right">CREATE DEALERSHIP</a>
+				</div>
 
 
 
@@ -59,9 +60,11 @@
 										<td>{{dealership.state}}</td>
 										<td>{{dealership.city}}</td>
 										<td>{{dealership.pincode}}</td>
-										 <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatedealership' dealership.id %}">UPDATE</a></td>
+										<td><a class="btn btn-outline-warning btn-sm"
+												href="{% url 'updatedealership' dealership.id %}">UPDATE</a></td>
 
-					<td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletedealership' dealership.id %}">DELETE</a></td>
+										<td><a class="btn btn-outline-danger btn-sm"
+												href="{% url 'deletedealership' dealership.id %}">DELETE</a></td>
 
 										{% endfor %}
 

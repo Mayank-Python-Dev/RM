@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render, redirect
 
 from ..models import *
 
@@ -10,62 +10,62 @@ from ..Models.variant import *
 
 from django.contrib import messages
 
-from django.contrib.auth import authenticate , login , logout 
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url = 'login')
+@login_required(login_url='login')
 @allowed_users(allowed_roles=['Master'])
 def variantlist(request):
-	if request.method == "POST":
-		form = Variantform(request.POST)
-		if form.is_valid():
-			form.save()
-			messages.success(request,f'VARIANT ADDED!')
-			form  = Variantform()
-			context = {'form': form}
-			return redirect('variant')
+    if request.method == "POST":
+        form = Variantform(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'VARIANT ADDED!')
+            form = Variantform()
+            context = {'form': form}
+            return redirect('variant')
 
-		else:
-			messages.warning(request,f'VARIANT ALREADY EXISTS')
-			form = Variantform()
-			return redirect('variant')
+        else:
+            messages.warning(request, f'VARIANT ALREADY EXISTS')
+            form = Variantform()
+            return redirect('variant')
+
+    else:
+        form = Variantform()
+        variants = Variant.objects.all()
+        context = {'variants': variants, 'form': form}
+        return render(request, 'master/variants.html', context)
 
 
-	else:
-		form = Variantform()
-		variants = Variant.objects.all()
-		context = {'variants' : variants,'form':form}
-		return render(request,'master/variants.html',context)
-
-@login_required(login_url = 'login')
+@login_required(login_url='login')
 @allowed_users(allowed_roles=['Master'])
-def updatevariant(request,pk):
-   Data = Variant.objects.get(id=pk)
-   Form = Variantform(instance = Data)
+def updatevariant(request, pk):
+    Data = Variant.objects.get(id=pk)
+    Form = Variantform(instance=Data)
+
+    if request.method == 'POST':
+        form = Variantform(request.POST, instance=Data)
+        if form.is_valid():
+            form.save()
+
+            messages.info(request, f'VARIANT UPDATED!')
+            return redirect('variant')
+
+    context = {'Form': Form}
+    return render(request, 'updatemaster/updatevariant.html', context)
 
 
-   if request.method =='POST':
-      form = Variantform(request.POST,instance = Data)
-      if form.is_valid():
-         form.save()
-
-         return redirect('variant')
-         
-
-
-   context = {'Form':Form}
-   return render(request,'updatemaster/updatevariant.html',context)
-
-@login_required(login_url = 'login')
+@login_required(login_url='login')
 @allowed_users(allowed_roles=['Master'])
-def deletevariant(request,pk):
-	variant = Variant.objects.get(id=pk)
-	if request.method == "POST":
-		variant.delete()
+def deletevariant(request, pk):
+    variant = Variant.objects.get(id=pk)
+    if request.method == "POST":
+        variant.delete()
 
-		return redirect('variant')
-	context = {'variant':variant}
+        messages.warning(request, f'VARIANT DELETED!')
+        return redirect('variant')
+    context = {'variant': variant}
 
-	return render(request, 'deletemaster/deletevariant.html',context)
+    return render(request, 'deletemaster/deletevariant.html', context)

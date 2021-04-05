@@ -1,0 +1,136 @@
+{% extends 'edp/edpbase.html' %}
+
+{% block content %}
+
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid pt-2">
+            <ol class="breadcrumb mb-4 bg-white ">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">#</li>
+            </ol>
+            <style type="text/css">
+                div.message {
+                    text-align: right;
+                }
+            </style>
+            <div class="message">
+                {% for message in messages %}
+                <div class="alert alert-success">
+                    <h1 class="display-6">{{message}}</h1>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- <h1>Payment</h1> -->
+
+            <div class="mdl-grid" style="width:1250px;margin-top:100px;">
+                <div id="products" class="mdl-data-tabledynamic mdl-shadow--2dp">
+                    <div class="mdl-data-tabledynamic__title">
+                        <h2 class="mdl-data-tabledynamic__title-text">Payment Breakup</h2>
+                        <div class="mdl-data-tabledynamic__actions">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect add-row">
+                                ADD
+                            </a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect remove-row">
+                                REMOVE
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="mdl-data-tabledynamic__content">
+                        <table
+                            class="mdl-data-table mdl-data-dynamictable mdl-js-data-table mdl-shadow--2dp mdl-cell--6-col mdl-data-table__row--selectable">
+                            <thead>
+
+                                <tr>
+                                    <th>
+                                        <label
+                                            class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select"
+                                            for="checkbox-all">
+                                            <input type="checkbox" id="checkbox-all" class="mdl-checkbox__input">
+                                        </label>
+                                    </th>
+                                    <th class="mdl-data-table__cell--non-numeric"> Payment Method</th>
+
+                                    <th class="mdl-data-table__cell--non-numeric">Pay</th>
+                                    <th class="mdl-data-table__cell--non-numeric">Date</th>
+                                    <th>Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label
+                                            class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select"
+                                            for="checkbox-1">
+
+                                            <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                                        </label>
+                                    </td>
+                                    <td style="text-align:left;"><span class="mdl-data-table__label add-table-content"
+                                            title="barcode">Add Method</span></td>
+
+                                    <td class="mdl-data-table__cell--non-numeric"><span
+                                            class="mdl-data-table__label add-table-content" title="brand">Add
+                                            Pay</span></td>
+                                    <td class="mdl-data-table__cell--non-numeric"><span
+                                            class="mdl-data-table__label add-table-content" title="details">Add
+                                            Date</span></td>
+                                    <td><span class="mdl-data-table__label add-table-content" title="quantity">Add
+                                            Amount</span>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+            <dialog class="mdl-dialog">Are you sure you want to remove this payment breakup ?
+                <div class="mdl-dialog__actions">
+                    <button type="button" class="mdl-button remove">Yes</button>
+                    <button type="button" class="mdl-button close">Cancel</button>
+                </div>
+            </dialog>
+            <script type="text/template" id="addContentDialogTemplate">
+              <div class="mdl-dialog__addContent mdl-shadow--2dp">
+                <h3 class="mdl-dialog__title">Add {{title}}</h3>
+                <div class="mdl-dialog__content">
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="content" {{pattern}}>
+                    <label class="mdl-textfield__label" for="content"></label>
+                    <span class="mdl-textfield__error">{{error}} </span>
+                  </div>
+                </div>
+                <div class="mdl-dialog__actions">
+                  <button type="button" class="save mdl-button mdl-button--colored mdl-color-text--red-500">Save</button>
+                  <button type="button" class="close mdl-button mdl-button--colored mdl-color-text--red-500">Cancel</button>
+                </div>
+              </div>
+            </script>
+
+            <script type="text/template" id="basketItemTemplate">
+              <tr>
+                <td>
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="{{id}}">
+                                    <input type="checkbox" id="{{id}}" class="mdl-checkbox__input">
+                                </label>
+                </td>
+                <td style="text-align:left;"><span class="mdl-data-table__label add-table-content" title="barcode">Add Method</span></td>
+                
+                <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="brand">Add Pay</span></td>
+                <td class="mdl-data-table__cell--non-numeric"><span class="mdl-data-table__label add-table-content" title="details">Add Date</span></td>
+                <td><span class="mdl-data-table__label add-table-content" title="quantity">Add Amount</span></td>
+                
+              </tr>
+            </script>
+
+
+
+            {% endblock %}

@@ -26,9 +26,9 @@ def modellist(request):
             form = Modelform()
             context = {'form': form}
             return redirect('model')
-            
+
         else:
-            messages.warning(request,f'MODEL ALREADY EXISTS')
+            messages.warning(request, f'MODEL ALREADY EXISTS')
             form = Modelform()
             return redirect('model')
 
@@ -50,6 +50,7 @@ def updatemodel(request, pk):
         if form.is_valid():
             form.save()
 
+            messages.info(request, f'MODEL UPDATED!')
             return redirect('model')
 
     context = {'Form': Form}
@@ -62,6 +63,7 @@ def deletemodel(request, pk):
     model = Model.objects.get(id=pk)
     if request.method == "POST":
         model.delete()
+        messages.warning(request, f'MODEL DELETED!')
         return redirect('model')
 
     context = {'model': model}

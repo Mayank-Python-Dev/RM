@@ -51,6 +51,7 @@ def updatebrand(request, pk):
         if form.is_valid():
             form.save()
 
+            messages.info(request, f'BRAND UPDATED!')
             return redirect('brand')
 
     context = {'Form': Form}
@@ -63,6 +64,8 @@ def deletebrand(request, pk):
     brand = Brand.objects.get(id=pk)
     if request.method == "POST":
         brand.delete()
+
+        messages.warning(request, f'BRAND DELETED!')
         return redirect('brand')
 
     context = {'brand': brand}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-
+from django.contrib import messages
 from .Models.brand import *
 from .Models.model import *
 from .Models.colour import *
@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 @admin_only
 def dashboard(request):
-    forms = Dealbreakup.objects.all()   
+    forms = Dealbreakup.objects.all()
     context = {'forms': forms}
     return render(request, 'master/masterdashboard.html', context)
 
@@ -30,6 +30,7 @@ def deletedeal(request, pk):
     Deal = Dealbreakup.objects.get(id=pk)
     if request.method == "POST":
         Deal.delete()
+        messages.warning(request, f'PRICELIST DELETED!')
         return redirect('master')
 
     context = {'Deal': Deal}

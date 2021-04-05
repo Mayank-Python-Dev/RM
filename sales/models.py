@@ -59,6 +59,10 @@ class Salesbooking(models.Model):
     Remarks = models.CharField(max_length=50)
     Dealer_discount = models.FloatField(default=0)
     Total_discount = models.FloatField(default=0)
+    Down_Payment = models.FloatField()
+    Finance = models.FloatField()
+    Used_car = models.FloatField()
+    Total_Payment = models.FloatField()
 
     def __str__(self):
         return self.customer_name

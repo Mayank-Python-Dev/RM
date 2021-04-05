@@ -105,7 +105,7 @@ def updatebooking(request, pk):
             x = form.cleaned_data['booking_receipt']
             print(x)
             form.save()
-            messages.success(request, f'BOOKING UPDATED!')
+            messages.info(request, f'BOOKING UPDATED!')
             return redirect('sales')
 
     context = {'form': form}
@@ -116,6 +116,7 @@ def deletebooking(request, pk):
     bookings = Salesbooking.objects.get(id=pk)
     if request.method == "POST":
         bookings.delete()
+        messages.warning(request, f'BOOKING DELETED!')
         return redirect('sales')
 
     context = {'bookings': bookings}
