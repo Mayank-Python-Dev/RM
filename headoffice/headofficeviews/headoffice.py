@@ -29,9 +29,9 @@ def Dashboard(request):
 def approve(request, pk):
     bookings = Salesbooking.objects.get(booking_ID=pk)
     if request.method == 'POST':
+        bookings.status = 'Approved'
         bookings.save()
 
-        messages.add_message(request, constants.SUCCESS, f"APPROVED")
         return redirect('headoffice')
 
     context = {'bookings': bookings}
@@ -43,8 +43,9 @@ def approve(request, pk):
 def reject(request, pk):
     bookings = Salesbooking.objects.get(booking_ID=pk)
     if request.method == 'POST':
+        bookings.status = 'Rejected'
         bookings.save()
-        messages.add_message(request, constants.SUCCESS, f"REJECTED")
+
         return redirect('headoffice')
 
     context = {'bookings': bookings}

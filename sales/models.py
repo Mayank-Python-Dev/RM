@@ -25,7 +25,6 @@ def user_directory_path(instance, filename):
 
 
 class Salesbooking(models.Model):
-    # Dealer = models.ForeignKey(Dealership,on_delete = models.CASCADE ,null = True)
     booking_ID = models.CharField(max_length=20)
     customer_name = models.CharField(max_length=50)
     contact_number = models.CharField(max_length=50)
@@ -63,6 +62,8 @@ class Salesbooking(models.Model):
     Finance = models.FloatField()
     Used_car = models.FloatField()
     Total_Payment = models.FloatField()
+    status = models.CharField(
+        max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.customer_name

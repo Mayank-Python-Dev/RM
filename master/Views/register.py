@@ -196,7 +196,6 @@ def register_edp(request):
         else:
             messages.info(request, f'PASSWORD IS NOT MATCHED!')
             return redirect('registeredp')
-
     else:
         form = CustomUserCreationForm()
         return render(request, 'createdealershipandaccounts/createedp.html', {'form': form})
