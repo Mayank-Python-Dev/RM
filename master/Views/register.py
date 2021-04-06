@@ -80,7 +80,7 @@ def register_sales(request):
                 if form.is_valid():
                     user = form.save()
                     messages.success(request, f'SALES ACCOUNT CREATED!')
-                    # username = form.cleaned_data.get('username')
+                    username = form.cleaned_data.get('username')
                     group = Group.objects.get(name='Sales')
                     user.groups.add(group)
                     return redirect('registersales')
