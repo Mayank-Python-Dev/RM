@@ -43,8 +43,7 @@
       <div class="modal-body">
         <div class="m-2 p-3">
 
-          <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
-            enctype="multipart/form-data">
+          <form method="Post" enctype="multipart/form-data">
             <div class="card-header"> <i class="fas fa-table mr-1"></i> Customer Booking </div>
             <div class="card-body px-0 upperFilter">
 
@@ -110,7 +109,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Ins_AMT|as_crispy_field}}
+                    {{Form.Insurance_AMT|as_crispy_field}}
                   </div>
                 </div>
               </div>
@@ -118,12 +117,12 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Rto|as_crispy_field}}
+                    {{Form.RTO|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.FASTag|as_crispy_field}}
+                    {{Form.FASTAG|as_crispy_field}}
                   </div>
                 </div>
               </div>
@@ -131,12 +130,12 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Tcs|as_crispy_field}}
+                    {{Form.TCS|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Total|as_crispy_field}}
+                    {{Form.TOTAL|as_crispy_field}}
                   </div>
                 </div>
               </div>
@@ -145,7 +144,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Acc|as_crispy_field}}
+                    {{Form.ACC|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -158,7 +157,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.Amc|as_crispy_field}}
+                    {{Form.Annual_Maintanence_Cost|as_crispy_field}}
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -285,7 +284,7 @@
   </div>
 </div>
 
-<!-- <script>
+<script>
   var score = 0;
   function getData() {
 
@@ -293,7 +292,7 @@
     var id_Model = $('#id_Model').val();
     var id_Variant = $('#id_Variant').val();
     var id_Colour = $('#id_Colour').val();
-    if (brand == '' || id_Model == '' || id_Variant == '' || id_Colour == '') {
+    if (brand == '' || brand == null || id_Model == '' || id_Model == null || id_Variant == '' || id_Colour == '') {
       if (window.score > 0) {
         $('.lowerValue .numberinput').val('');
 
@@ -337,7 +336,26 @@
     url = "";
     updateDropDown(this.id, this.value);
   });
+  $(".discount input[type=number]").on('input', function () {
+    var tot = parseFloat($('#id_On_Road_Price').val());
+    if (tot == 0) {
+      return false;
+    }
+    $(".discount input[type=number]").each(function (val) {
+      if (this.value != "") {
+        tot += parseFloat(this.value);
+      }
 
+      console.log("dsfsddsf", this.value);
+    });
+    if (tot == 0) {
+      return false;
+    }
+    console.log(tot);
+
+
+    $('#id_On_Road_Price').val(tot)
+  });;
   function updateDropDown(tp, val) {
     $.ajax({
       url: "/sales/option/?type=" + tp + "&val=" + val,
@@ -361,7 +379,7 @@
 
         var str = '<option value="" selected="">---------</option>';
         for (var i = 0; i < data.length; i++) {
-          str += "<option value=''>" + data[i].fields.Name + "</option>";
+          str += "<option value='" + data[i].pk + "'>" + data[i].fields.Name + "</option>";
         }
         console.log(str);
         if (tp == 'id_Brand') {
@@ -381,9 +399,8 @@
     });
 
   }
-</script> -->
 
-
+</script>
 
 
 

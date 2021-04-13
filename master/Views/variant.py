@@ -14,6 +14,8 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
+from master.Models.variant import *
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Master'])
@@ -21,11 +23,18 @@ def variantlist(request):
     if request.method == "POST":
         form = Variantform(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, f'VARIANT ADDED!')
-            form = Variantform()
-            context = {'form': form}
-            return redirect('variant')
+            name = request.POST.get('Name')
+            brandname = request.POST.get('brand')
+            modelname = request.POST.get('model')
+            fuelname = request.POST.get('fuel')
+            if Variant.objects.filter(Name=name, brand=brandname, model=modelname, fuel=fuelname).exists():
+                messages.warning(
+                    request, f'ALREADY EXISTS!')
+                return redirect('variant')
+            else:
+                form.save()
+                messages.success(request, f'VARIANT ADDED!')
+                return redirect('variant')
 
         else:
             messages.warning(request, f'VARIANT ALREADY EXISTS')

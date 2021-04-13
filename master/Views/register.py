@@ -115,7 +115,7 @@ def register_headoffice(request):
                     messages.success(request, f'HEADOFFICE ACCOUNT CREATED!')
                     print(user)
                     username = form.cleaned_data.get('username')
-                    group = Group.objects.get(name='Ho')
+                    group = Group.objects.get(name='HeadOffice')
                     user.groups.add(group)
                     return redirect('registerheadoffice')
         else:
@@ -190,7 +190,7 @@ def register_edp(request):
                     user = form.save()
                     messages.success(request, f'EDP ACCOUNT CREATED!')
                     username = form.cleaned_data.get('username')
-                    group = Group.objects.get(name='edp')
+                    group = Group.objects.get(name='EDP')
                     user.groups.add(group)
                     return redirect('registeredp')
         else:
@@ -222,7 +222,7 @@ def register_account(request):
                     user = form.save()
                     messages.success(request, f'ACCOUNT CREATED!')
                     username = form.cleaned_data.get('username')
-                    group = Group.objects.get(name='account')
+                    group = Group.objects.get(name='Account')
                     user.groups.add(group)
                     return redirect('registeraccount')
         else:

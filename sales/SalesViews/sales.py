@@ -26,11 +26,16 @@ def Booking(request):
     if request.method == "POST":
         Form = Bookingform(request.POST, request.FILES)
         if Form.is_valid():
-            Form.save()
-            messages.success(request, f'BOOKING CREATED!')
-            Form = Bookingform()
-            context = {'Form': Form}
-            return redirect('sales')
+            booking_id = request.POST.get('booking_ID')
+            if Salesbooking.objects.filter(booking_ID=booking_id).exists():
+                messages.warning(request, f'BOOKING ID ALREADY EXISTS!')
+                return redirect('')
+            else:
+                Form.save()
+                messages.success(request, f'BOOKING CREATED!')
+                Form = Bookingform()
+                context = {'Form': Form}
+                return redirect('sales')
     else:
 
         Form = Bookingform()
@@ -44,8 +49,23 @@ def Booking(request):
 @allowed_users(allowed_roles=['Sales'])
 def Dashboard(request):
     bookings = Salesbooking.objects.all()
-    context = {'bookings': bookings}
-    return render(request, 'sales/salesdashboard.html', context)
+    if request.method == "POST":
+        Form = Bookingform(request.POST, request.FILES)
+        if Form.is_valid():
+            booking_id = request.POST.get('booking_ID')
+            if Salesbooking.objects.filter(booking_ID=booking_id).exists():
+                messages.warning(request, f'Booking ID Already Exists!')
+                return redirect('sales')
+            else:
+                Form.save()
+                messages.success(request, f'BOOKING CREATED!')
+                Form = Bookingform()
+                return redirect('sales')
+    else:
+        Form = Bookingform()
+        bookings = Salesbooking.objects.all()
+        context = {'Form': Form, 'bookings': bookings}
+        return render(request, 'sales/salesdashboard.html', context)
 
 
 @login_required(login_url='login')
@@ -72,39 +92,34 @@ def DropdownData(request):
     #fuel = request.GET['fuel']
     dbres = None
     if tp == "id_Brand":
-        dbres = Model.objects.filter(brand=val).all()
 
+        dbres = Model.objects.filter(brand=val).all()
+        #dbres = Variant.objects.all()
+        print(dbres)
     elif tp == "id_Model":
         dbres = Variant.objects.select_related('model').filter(model=val).all()
 
     elif tp == "id_Variant":
         dbres = Colour.objects.filter(variant=val).all()
 
-    if not dbres:
+    if dbres:
         res = serializers.serialize("json", dbres)
         data = {"data": res}
         return JsonResponse(data)
 
     return JsonResponse({"data": ""})
 
-    # dbres = Dealbreakup.objects.select_related('brand','model','variant','colour').filter(tp=val)
-
-    # res = serializers.serialize("json", dbres)
-    # data = {"data": res}
-    # return JsonResponse(data)
-
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Sales'])
 def updatebooking(request, pk):
-    bookings = Salesbooking.objects.get(id=pk)
-    form = Bookingform(instance=bookings)
+    Forms = Salesbooking.objects.get(id=pk)
+    form = Bookingform(instance=Forms)
     if request.method == "POST":
-        form = Bookingform(request.POST, request.FILES, instance=bookings)
+        form = Bookingform(request.POST, request.FILES, instance=Forms)
         if form.is_valid():
-            x = form.cleaned_data['booking_receipt']
-            print(x)
             form.save()
+
             messages.info(request, f'BOOKING UPDATED!')
             return redirect('sales')
 
@@ -112,6 +127,8 @@ def updatebooking(request, pk):
     return render(request, 'updatesales/updatebooking.html', context)
 
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Sales'])
 def deletebooking(request, pk):
     bookings = Salesbooking.objects.get(id=pk)
     if request.method == "POST":

@@ -6,7 +6,7 @@
   <main>
     <div class="container-fluid pt-2">
       <ol class="breadcrumb mb-4 bg-white ">
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
         <li class="breadcrumb-item active">Master View</li>
         <div class="align-self-end ml-auto">
 
@@ -82,9 +82,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
+        <h6 class="modal-title" id="exampleModalLabel">
           CREATE ACCOUNT
-        </h5>
+        </h6>
         <hr>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -93,29 +93,17 @@
       <div class="modal-body">
         <div class="m-2 p-3">
           <div class="card-body text-center px-0">
-            <a href="{% url 'registersales' %}" class="btn btn-dark btn-lg" role="button" aria-disabled="true">
-              <h3>Sales</h3>
-            </a>
-          </div>
-          <div class="card-body text-center px-0">
-            <a href="{% url 'registerheadoffice' %}" class="btn btn-dark btn-lg" role="button" aria-disabled="true">
-              <h3>HeadOffice</h3>
-            </a>
-          </div>
-          <div class="card-body text-center px-0">
-            <a href="{% url 'registeredp' %}" class="btn btn-dark btn-lg" role="button" aria-disabled="true">
-              <h3>EDP</h3>
-            </a>
-          </div>
-          <div class="card-body text-center px-0">
-            <a href="{% url 'registeraccount' %}" class="btn btn-dark btn-lg " role="button" aria-disabled="true">
-              <h3>Accounts </h3>
-            </a>
-          </div>
+            <a href="{% url 'registersales' %}" class="btn btn-dark btn-lg" role="button"
+              data-bs-toggle="button">Sales</a>
+            <a href="{% url 'registerheadoffice' %}" class="btn btn-dark btn-lg" role="button" data-bs-toggle="button"
+              aria-pressed="true">HeadOffice
 
-          <!-- <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"> -->
-          <!--  -->
-
+            </a>
+            <a href="{% url 'registeredp' %}" class="btn btn-dark btn-lg" tabindex="-1" aria-disabled="true"
+              role="button" data-bs-toggle="button">EDP</a>
+            <a href="{% url 'registeraccount' %}" class="btn btn-dark btn-lg" tabindex="-1" aria-disabled="true"
+              role="button" data-bs-toggle="button">Account</a>
+          </div>
           </form>
         </div>
       </div>

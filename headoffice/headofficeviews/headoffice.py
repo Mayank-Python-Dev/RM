@@ -12,12 +12,19 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
+from django.http import HttpResponse
 
 from master.Models.dealership import *
 
+from sales.forms import *
+
+from django.http import JsonResponse
+
+from django.core import serializers
+
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Ho'])
+@allowed_users(allowed_roles=['HeadOffice'])
 def Dashboard(request):
     bookings = Salesbooking.objects.all()
     context = {'bookings': bookings}
@@ -25,7 +32,7 @@ def Dashboard(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Ho'])
+@allowed_users(allowed_roles=['HeadOffice'])
 def approve(request, pk):
     bookings = Salesbooking.objects.get(booking_ID=pk)
     if request.method == 'POST':
@@ -39,7 +46,7 @@ def approve(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Ho'])
+@allowed_users(allowed_roles=['HeadOffice'])
 def reject(request, pk):
     bookings = Salesbooking.objects.get(booking_ID=pk)
     if request.method == 'POST':
@@ -53,17 +60,46 @@ def reject(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Ho'])
-def bookingdetail(request, pk=None):
+@allowed_users(allowed_roles=['HeadOffice'])
+def bookingdetail(request, pk):
     bookings = Salesbooking.objects.filter(booking_ID=pk)
-    # detail = bookings.getDict()
-    context = {'bookings': bookings}
-    return render(request, 'headoffice/headofficebookingdetail.html', context)
+    if request.method == 'POST':
+        form = Bookingform(request.POST)
+        if form.is_valid():
+            bookings = form.save()
+            bookings.save()
+            messages.success(request, f'MODIFICATION SENT TO SALES!')
+            return redirect('headoffice')
+        else:
+            messages.warning(request, f'NOT MODIFY YET!')
+            return redirect('headoffice')
+    else:
+        form = Bookingform()
+        context = {'bookings': bookings, 'form': form}
+        return render(request, 'headoffice/headofficebookingdetail.html', context)
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Ho'])
+@allowed_users(allowed_roles=['HeadOffice'])
 def dealership(request):
     Dealerships = Dealership.objects.all()
     context = {'Dealerships': Dealerships}
     return render(request, 'headofficedealership/Dealership.html', context)
+
+
+# def modification(request, pk):
+#     bookings = Salesbooking.objects.filter(booking_ID=pk)
+#     if request.method == "POST":
+#         form = ModificationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponse('data has been sent')
+
+#     else:
+#         form = ModificationForm()
+#         context = {'form': form}
+#         return render(request, 'modify headoffice/modifyheadoffice.html', context)
+
+    # qs = Salesbooking.objects.all()
+    # qs_json = serializers.serialize('json', qs)
+    # return HttpResponse(qs_json, content_type='application/json')

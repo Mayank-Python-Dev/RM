@@ -21,4 +21,4 @@ class Colour(models.Model):
     typecode = models.CharField(max_length=20, choices=colour_type)
 
     def __str__(self):
-        return self.Name
+        return f'{self.Name} / {self.typecode}'

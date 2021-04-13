@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 from master.Models.dealbreakup import Dealbreakup
 
 from master.Models.brand import *
@@ -35,14 +34,14 @@ class Salesbooking(models.Model):
     Colour = models.ForeignKey(Colour, on_delete=models.CASCADE)
     Date = models.DateTimeField(auto_now_add=True)
     Ex_Showroom_Price = models.FloatField()
-    Ins_AMT = models.FloatField()
-    Rto = models.FloatField()
-    FASTag = models.FloatField()
-    Tcs = models.FloatField()
-    Total = models.FloatField()
-    Acc = models.FloatField()
+    Insurance_AMT = models.FloatField()
+    RTO = models.FloatField()
+    FASTAG = models.FloatField()
+    TCS = models.FloatField()
+    TOTAL = models.FloatField()
+    ACC = models.FloatField()
     Extended_Warranty = models.FloatField()
-    Amc = models.FloatField()
+    Annual_Maintanence_Cost = models.FloatField()
     On_Road_Price = models.FloatField()
     booking_receipt = models.FileField(
         null=True, blank=True, upload_to=user_directory_path)
@@ -58,12 +57,14 @@ class Salesbooking(models.Model):
     Remarks = models.CharField(max_length=50)
     Dealer_discount = models.FloatField(default=0)
     Total_discount = models.FloatField(default=0)
-    Down_Payment = models.FloatField()
-    Finance = models.FloatField()
-    Used_car = models.FloatField()
-    Total_Payment = models.FloatField()
+    Down_Payment = models.FloatField(null=True, blank=True)
+    Finance = models.FloatField(null=True, blank=True)
+    Used_car = models.FloatField(null=True, blank=True)
+    Total_Payment = models.FloatField(null=True, blank=True)
     status = models.CharField(
         max_length=50, null=True, blank=True)
+    Modification = models.TextField(
+        max_length=500, help_text='Write Something')
 
     def __str__(self):
         return self.customer_name

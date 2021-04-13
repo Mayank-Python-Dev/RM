@@ -1,4 +1,6 @@
 {% extends 'headoffice/headofficebase.html' %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div id="layoutSidenav_content">
@@ -74,14 +76,14 @@
                                     <tr>
                                         {% for booking in bookings %}
                                         <td>{{booking.Ex_Showroom_Price}}</td>
-                                        <td>{{booking.Ins_AMT}}</td>
-                                        <td>{{booking.Rto}}</td>
-                                        <td>{{booking.FASTag}}</td>
-                                        <td>{{booking.Tcs}}</td>
-                                        <td>{{booking.Total}}</td>
-                                        <td>{{booking.Acc}}</td>
+                                        <td>{{booking.Insurance_AMT}}</td>
+                                        <td>{{booking.RTO}}</td>
+                                        <td>{{booking.FASTAG}}</td>
+                                        <td>{{booking.TCS}}</td>
+                                        <td>{{booking.TOTAL}}</td>
+                                        <td>{{booking.ACC}}</td>
                                         <td>{{booking.Extended_Warranty}}</td>
-                                        <td>{{booking.Amc}}</td>
+                                        <td>{{booking.Annual_Maintanence_Cost}}</td>
                                         <td>{{booking.On_Road_Price}}</td>
                                         {% endfor %}
                                     </tr>
@@ -132,8 +134,21 @@
                         </div>
                     </div>
 
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table mr-1"></i>
+                            Send for Modification
+                            <form method="Post">
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                    {{form.Modification|as_crispy_field}}
+                </div>
 
-                    <!-- <table class="table table-bordered" width="100%" cellspacing="0">
+                <button type="submit" class="btn btn-success btn-lg">Send</button>
+                </form>
+
+                <!-- <table class="table table-bordered" width="100%" cellspacing="0">
 
                                 <tbody>
                                     {% for key,value in detail.items %}
@@ -155,8 +170,8 @@
 
                                 </tbody>
                             </table> -->
-                </div>
             </div>
         </div>
+</div>
 </div>
 {% endblock %}

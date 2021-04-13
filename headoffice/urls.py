@@ -13,4 +13,5 @@ urlpatterns = [
     path('bookingdetails/<str:pk>/',
          headoffice.bookingdetail, name='bookingdetails'),
     path('dealership/', headoffice.dealership, name='HOdealership'),
+    # path('modification/<str:pk>/', headoffice.modification, name='modification'),
 ]

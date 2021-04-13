@@ -1,11 +1,9 @@
-from django.db import models
-
 from .brand import Brand
 from .model import Model
 from .fuel import Fuel
 from .variant import Variant
 from .colour import Colour
-
+from django.db import models
 
 transmission_name = (
     ('Manual', 'Manual'),
@@ -21,14 +19,14 @@ class Dealbreakup(models.Model):
     colour = models.ForeignKey(Colour, on_delete=models.CASCADE)
     transmission = models.CharField(max_length=20, choices=transmission_name)
     ex_Showroom_Price = models.FloatField()
-    ins_AMT = models.FloatField()
-    rto = models.FloatField()
-    fASTag = models.FloatField()
-    tcs = models.FloatField()
-    total = models.FloatField()
-    acc = models.FloatField()
+    Insurance_Amount = models.FloatField()
+    RTO = models.FloatField()
+    FASTAG = models.FloatField()
+    TCS = models.FloatField()
+    TOTAL = models.FloatField()
+    ACC = models.FloatField()
     extended_Warranty = models.FloatField()
-    amc = models.FloatField()
+    Annual_Maintanence_Cost = models.FloatField()
     on_Road_Price = models.FloatField()
     consume_offer = models.FloatField(default=0)
     exchange_bonus = models.FloatField(default=0)

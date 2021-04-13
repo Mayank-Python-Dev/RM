@@ -1,0 +1,29 @@
+{% extends 'headoffice/headofficebase.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid pt-2">
+            <ol class="breadcrumb mb-4 bg-white ">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Master View</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Modification </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-body">
+                            <form method="Post">
+                                {% csrf_token %}
+                                {{form.Modification|as_crispy_field}}
+                                <a class="btn btn-warning btn-lg" href="{% url 'headoffice' %}">Cancel</a>
+                                <button type="submit" class="btn btn-success btn-lg">Approve</button>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {% endblock %}

@@ -18,7 +18,7 @@
           data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}"
           data-colours-url="{% url 'ajax_load_colours' %}">
           {% csrf_token %}
-          <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div>
+          <div class="card-header"> <i class="fas fa-table mr-1"></i> Update Details </div>
           <div class="card-body px-0">
 
             <div class="form-row">
@@ -69,7 +69,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.ins_AMT|as_crispy_field}}
+                  {{form.Insurance_Amount|as_crispy_field}}
                 </div>
               </div>
             </div>
@@ -77,12 +77,12 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.rto|as_crispy_field}}
+                  {{form.RTO|as_crispy_field}}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.fASTag|as_crispy_field}}
+                  {{form.FASTAG|as_crispy_field}}
                 </div>
               </div>
             </div>
@@ -90,19 +90,19 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.tcs|as_crispy_field}}
+                  {{form.TCS|as_crispy_field}}
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.total|as_crispy_field}}
+                  {{form.TOTAL|as_crispy_field}}
                 </div>
               </div>
             </div>
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.acc|as_crispy_field}}
+                  {{form.ACC|as_crispy_field}}
                 </div>
               </div>
               <div class="col-md-6">
@@ -114,7 +114,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.amc|as_crispy_field}}
+                  {{form.Annual_Maintanence_Cost|as_crispy_field}}
                 </div>
               </div>
               <div class="col-md-6">
@@ -125,48 +125,48 @@
             </div>
 
             <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
-          <div class="card-body px-0">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.consume_offer|as_crispy_field}}
+            <div class="card-body px-0">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.consume_offer|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.exchange_bonus|as_crispy_field}}
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.exchange_bonus|as_crispy_field}}
-                </div>
-              </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.corporate_discount|as_crispy_field}}
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.corporate_discount|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.remarks|as_crispy_field}}
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.remarks|as_crispy_field}}
-                </div>
-              </div>
-            </div>
 
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.dealer_discount|as_crispy_field}}
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.dealer_discount|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{form.total_discount|as_crispy_field}}
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.total_discount|as_crispy_field}}
-                </div>
-              </div>
-            </div>
 
-            <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
-          </div>
+              <input class="btn float-right btn-outline-primary col-lg-4" type=submit value="Save" />
+            </div>
         </form>
       </div>
     </div>

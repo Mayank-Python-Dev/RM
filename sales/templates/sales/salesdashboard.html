@@ -1,6 +1,6 @@
 {% extends 'sales/salesbase.html' %}
 
-<!-- {% load crispy_forms_tags %} -->
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -30,22 +30,24 @@
       <div class="card mb-4">
         <div class="card-header"> <i class="fas fa-table mr-1"></i>
           Dealership/{{user.dealershipname}}/{{user.dealershipname.address}}</div>
+        <div class="m-3 p-3">
+          <a href="#" data-toggle="modal" data-target="#exampleModal"
+            class="btn btn-outline-info border rounded  col-lg-3 float-right">ADD NEW BOOKING</a>
+        </div>
 
         <div class="card-body px-0">
 
-          <div class="col-md-12">
-            <div class="form-group">
+          <div class="card-body">
+            <div class="table-responsive">
               <table class="table table-info table-Default" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-
                     <th scope="col">Booking ID</th>
-
                     <th scope="col">Customer Name</th>
                     <th scope="col">Contact Number</th>
-                    <th>Car - Model - Variant_Type - Colour</th>
-                    <th>Booking Date</th>
-                    <th>Status</th>
+                    <th scope="col">Car - Model - Variant_Type - Colour</th>
+                    <th scope="col">Booking Date</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
 
@@ -55,17 +57,23 @@
                 <tbody>
                   {% for booking in bookings %}
                   <tr>
-                    <th scope="row">{{booking.booking_ID}}</th>
+                    <td>{{booking.booking_ID}}</td>
                     <td>{{booking.customer_name}}</td>
                     <td>{{booking.contact_number}}</td>
                     <td>{{booking.Brand}}/{{booking.Model}}/{{booking.Variant}}/{{booking.Colour}}</td>
                     <td>{{booking.Date|date:"D,d M, Y"}}</td>
-                    <td><span class=" text-danger">PENDING</span></td>
+                    {% if not booking.status %}
+                    <td style="position:relative"><i class="fa fa-spinner fa-spin" position: absolute; right: 6px; top:
+                        4px;></i></td>
+                    {% elif booking.status == 'Approved' %}
+                    <td><span class=" text-success">Approved</span></td>
+                    {% elif booking.status == 'Rejected' %}
+                    <td><span class=" text-danger">Rejected</span></td>
+                    {% endif %}
                     <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebooking' booking.id %}">UPDATE</a>
                     </td>
                     <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletebooking' booking.id %}">DELETE</a>
                     </td>
-
                   </tr>
                   {% endfor %}
 
@@ -83,6 +91,381 @@
 
 </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          ADD NEW BOOKING
+        </h5>
+        <hr>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="m-2 p-3">
+
+          <form method="Post" enctype="multipart/form-data">
+            <div class="card-header"> <i class="fas fa-table mr-1"></i> Customer Booking </div>
+            <div class="card-body px-0 upperFilter">
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.booking_ID|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.customer_name|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.contact_number|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.email|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Brand|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Model|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Variant|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Colour|as_crispy_field}}
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
+            <div class="card-body px-0 lowerValue">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Ex_Showroom_Price|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Insurance_AMT|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.RTO|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.FASTAG|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.TCS|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.TOTAL|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.ACC|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Extended_Warranty|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.Annual_Maintanence_Cost|as_crispy_field}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    {{Form.On_Road_Price|as_crispy_field}}
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
+              <div class="card-body px-0 lowerValue">
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Consumer_offer|as_crispy_field}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Exchange_bonus|as_crispy_field}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Corporate_discount|as_crispy_field}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Remarks|as_crispy_field}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Dealer_discount|as_crispy_field}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      {{Form.Total_discount|as_crispy_field}}
+                    </div>
+                  </div>
+                </div>
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
+                <div class="card-body px-0 lowerValue">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Down_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Finance|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Used_car|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Total_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="card mb-4">
+
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Booking Reciept</th>
+                        <th>{{Form.booking_receipt}}</th>
+
+                      </tr>
+                      <tr>
+                        <th>Quotation</th>
+                        <th>{{Form.quotation}}</th>
+
+
+                      </tr>
+                      <tr>
+                        <th>Order Form</th>
+                        <th>{{Form.order_form}}</th>
+
+
+                      </tr>
+                      <tr>
+                        <th>Delivery Order</th>
+                        <th>{{Form.Delivery_Order}}</th>
+
+                      </tr>
+
+                    </table>
+                  </div>
+
+                  <div class="form-group mt-4 mb-0">
+                    {% csrf_token %}
+
+                    <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
+
+
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var score = 0;
+  function getData() {
+
+    var brand = $('#id_Brand').val();
+    var id_Model = $('#id_Model').val();
+    var id_Variant = $('#id_Variant').val();
+    var id_Colour = $('#id_Colour').val();
+    if (brand == '' || brand == null || id_Model == '' || id_Model == null || id_Variant == '' || id_Colour == '') {
+      if (window.score > 0) {
+        $('.lowerValue .numberinput').val('');
+
+      }
+      return false;
+    }
+    $.ajax({
+      url: '/sales/detail/?brand=' + brand + '&model=' + id_Model + '&variant=' + id_Variant + '&color=' + id_Colour,
+      success: function (json_response) {
+        data = JSON.parse(json_response.data);
+        if (!data.length > 0 || data == '') {
+          if (window.score > 0) {
+            $('.lowerValue .numberinput').val('');
+
+          }
+          return false
+        }
+        window.score++;
+
+        var a = data[0].fields;
+        $("#id_Ex_Showroom_Price").val(a.ex_Showroom_Price);
+        $("#id_Insurance_AMT").val(a.Insurance_Amount);
+        $("#id_RTO").val(a.RTO);
+        $("#id_FASTAG").val(a.FASTAG);
+        $("#id_TCS").val(a.TCS);
+        $("#id_TOTAL").val(a.TOTAL);
+        $("#id_ACC").val(a.ACC);
+        $("#id_Extended_Warranty").val(a.extended_Warranty);
+        $("#id_Annual_Maintanence_Cost").val(a.Annual_Maintanence_Cost);
+        $("#id_On_Road_Price").val(a.on_Road_Price);
+      }
+    })
+  }
+  $(document).ready(function () {
+    $(".upperFilter select").change(function () {
+      getData();
+    });
+
+  });
+  $("#id_Brand ,#id_Model ,#id_Variant").change(function () {
+    url = "";
+    updateDropDown(this.id, this.value);
+  });
+  $(".discount input[type=number]").on('input', function () {
+    var tot = parseFloat($('#id_On_Road_Price').val());
+    if (tot == 0) {
+      return false;
+    }
+    $(".discount input[type=number]").each(function (val) {
+      if (this.value != "") {
+        tot += parseFloat(this.value);
+      }
+
+      console.log("dsfsddsf", this.value);
+    });
+    if (tot == 0) {
+      return false;
+    }
+    console.log(tot);
+
+
+    $('#id_On_Road_Price').val(tot)
+  });;
+  function updateDropDown(tp, val) {
+    $.ajax({
+      url: "/sales/option/?type=" + tp + "&val=" + val,
+      success: function (json_response) {
+        if (json_response.data == '') {
+          if (tp == 'id_Brand') {
+            $("#id_Model").empty();
+            // $("#id_Model").append(str);
+          }
+          if (tp == 'id_Model') {
+            $("#id_Variant").empty();
+            //$("#id_Variant").append(str);
+          }
+          if (tp == 'id_Variant') {
+            $("#id_Colour").empty();
+            // $("#id_Colour").append(str);
+          }
+          return false;
+        }
+        data = JSON.parse(json_response.data);
+
+        var str = '<option value="" selected="">---------</option>';
+        for (var i = 0; i < data.length; i++) {
+          str += "<option value='" + data[i].pk + "'>" + data[i].fields.Name + "</option>";
+        }
+        console.log(str);
+        if (tp == 'id_Brand') {
+          $("#id_Model").empty();
+          $("#id_Model").append(str);
+        }
+        if (tp == 'id_Model') {
+          $("#id_Variant").empty();
+          $("#id_Variant").append(str);
+        }
+        if (tp == 'id_Variant') {
+          $("#id_Colour").empty();
+          $("#id_Colour").append(str);
+        }
+
+      }
+    });
+
+  }
+
+</script>
 
 
 

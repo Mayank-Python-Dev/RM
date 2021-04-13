@@ -13,57 +13,57 @@
                 </div>
             </ol>
             <div class="card mb-4">
-                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Price List</div>
-                    <div class="card-body px-0">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <table class="table table-striped table-dark">
-                                    <thead>
-                                        <tr>
-                                            <!-- <th scope="col">Car ID</th> -->
-                                            <th scope="col">Model</th>
-                                            <th scope="col">Fuel</th>
-                                            <th scope="col">Transmission</th>
-                                            <th scope="col">Variant</th>
-                                            <th scope="col">Ex-Showroom</th>
-                                            <th scope="col">INS.AMT.</th>
-                                            <th scope="col">RTO</th>
-                                            <th scope="col">FASTag</th>
-                                            <th scope="col">TCS</th>
-                                            <th scope="col">TOTAL</th>
-                                            <th scope="col">Acc.</th>
-                                            <th scope="col">EW</th>
-                                            <th scope="col">AMC</th>
-                                            <th scope="col">ON ROAD</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for Form in Forms %}
-                                        <tr>
-                                            <td>{{Form.model}}</td>
-                                            <td>{{Form.fuel}}</td>
-                                            <td>{{Form.transmission}}</td>
-                                            <td>{{Form.variant}}</td>
-                                            <td>{{Form.ex_Showroom_Price}}</td>
-                                            <td>{{Form.ins_AMT}}</td>
-                                            <td>{{Form.rto}}</td>
-                                            <td>{{Form.fASTag}}</td>
-                                            <td>{{Form.tcs}}</td>
-                                            <td>{{Form.total}}</td>
-                                            <td>{{Form.acc}}</td>
-                                            <td>{{Form.extended_Warranty}}</td>
-                                            <td>{{Form.amc}}</td>
-                                            <td>{{Form.on_Road_Price}}</td>
-                                        </tr>
-                                        {% endfor %}
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Price List</div>
+                <div class="card-body px-0">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <table class="table table-striped table-dark">
+                                <thead>
+                                    <tr>
+                                        <!-- <th scope="col">Car ID</th> -->
+                                        <th scope="col">Model</th>
+                                        <th scope="col">Fuel</th>
+                                        <th scope="col">Transmission</th>
+                                        <th scope="col">Variant</th>
+                                        <th scope="col">Ex-Showroom</th>
+                                        <th scope="col">INS.AMT.</th>
+                                        <th scope="col">RTO</th>
+                                        <th scope="col">FASTag</th>
+                                        <th scope="col">TCS</th>
+                                        <th scope="col">TOTAL</th>
+                                        <th scope="col">Acc.</th>
+                                        <th scope="col">EW</th>
+                                        <th scope="col">AMC</th>
+                                        <th scope="col">ON ROAD</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for Form in Forms %}
+                                    <tr>
+                                        <td>{{Form.model}}</td>
+                                        <td>{{Form.fuel}}</td>
+                                        <td>{{Form.transmission}}</td>
+                                        <td>{{Form.variant}}</td>
+                                        <td>{{Form.ex_Showroom_Price}}</td>
+                                        <td>{{Form.Insurance_Amount}}</td>
+                                        <td>{{Form.RTO}}</td>
+                                        <td>{{Form.FASTAG}}</td>
+                                        <td>{{Form.TCS}}</td>
+                                        <td>{{Form.TOTAL}}</td>
+                                        <td>{{Form.ACC}}</td>
+                                        <td>{{Form.extended_Warranty}}</td>
+                                        <td>{{Form.Annual_Maintanence_Cost}}</td>
+                                        <td>{{Form.on_Road_Price}}</td>
+                                    </tr>
+                                    {% endfor %}
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
-
                     </div>
-                    <div class="card mb-4">
+
+                </div>
+                <div class="card mb-4">
                     <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
                     <div class="card-body px-0">
                         <div class="col-md-12">

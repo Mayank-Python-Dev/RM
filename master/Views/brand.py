@@ -54,7 +54,7 @@ def updatebrand(request, pk):
             messages.info(request, f'BRAND UPDATED!')
             return redirect('brand')
 
-    context = {'Form': Form}
+    context = {'form': form}
     return render(request, 'updatemaster/updatebrand.html', context)
 
 

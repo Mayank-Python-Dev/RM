@@ -28,7 +28,7 @@ def modellist(request):
             return redirect('model')
 
         else:
-            messages.warning(request, f'MODEL ALREADY EXISTS')
+            messages.warning(request, f'MODEL ALREADY EXISTS!')
             form = Modelform()
             return redirect('model')
 

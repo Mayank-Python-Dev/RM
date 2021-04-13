@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
 
+from master.Models.fuel import *
+
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Master'])
@@ -19,9 +21,15 @@ def fuellist(request):
     if request.method == "POST":
         form = Fuelform(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, f'FUEL TYPE ADDED!')
-            return redirect('fuel')
+            fuel = request.POST.get('Name')
+            if Fuel.objects.filter(Name=fuel).exists():
+                messages.warning(
+                    request, f'ALREADY EXISTS!')
+                return redirect('fuel')
+            else:
+                form.save()
+                messages.success(request, f'FUEL TYPE ADDED!')
+                return redirect('fuel')
         else:
             messages.warning(request, f'FUEL TYPE ALREADY EXISTS')
             form = Fuelform()
