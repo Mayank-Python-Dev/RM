@@ -22,14 +22,13 @@ from django.contrib.auth.models import User
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Sales'])
 def Booking(request):
-
     if request.method == "POST":
         Form = Bookingform(request.POST, request.FILES)
         if Form.is_valid():
             booking_id = request.POST.get('booking_ID')
-            if Salesbooking.objects.filter(booking_ID=booking_id).exists():
+            if Salesbooking.objects.filter(booking_ID=booking_ID).exists():
                 messages.warning(request, f'BOOKING ID ALREADY EXISTS!')
-                return redirect('')
+                return redirect('sales')
             else:
                 Form.save()
                 messages.success(request, f'BOOKING CREATED!')
@@ -40,7 +39,6 @@ def Booking(request):
 
         Form = Bookingform()
         bookings = Salesbooking.objects.all()
-
         context = {'Form': Form, 'bookings': bookings}
         return render(request, 'sales/booking.html', context)
 
@@ -48,18 +46,18 @@ def Booking(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Sales'])
 def Dashboard(request):
+    Form = Bookingform()
     bookings = Salesbooking.objects.all()
     if request.method == "POST":
         Form = Bookingform(request.POST, request.FILES)
         if Form.is_valid():
             booking_id = request.POST.get('booking_ID')
             if Salesbooking.objects.filter(booking_ID=booking_id).exists():
-                messages.warning(request, f'Booking ID Already Exists!')
+                messages.warning(request, f'BOOKING ID ALREADY EXISTS!')
                 return redirect('sales')
             else:
                 Form.save()
                 messages.success(request, f'BOOKING CREATED!')
-                Form = Bookingform()
                 return redirect('sales')
     else:
         Form = Bookingform()
@@ -113,10 +111,10 @@ def DropdownData(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Sales'])
 def updatebooking(request, pk):
-    Forms = Salesbooking.objects.get(id=pk)
-    form = Bookingform(instance=Forms)
+    booking = Salesbooking.objects.get(id=pk)
+    form = Bookingform(instance=booking)
     if request.method == "POST":
-        form = Bookingform(request.POST, request.FILES, instance=Forms)
+        form = Bookingform(request.POST, request.FILES, instance=booking)
         if form.is_valid():
             form.save()
 

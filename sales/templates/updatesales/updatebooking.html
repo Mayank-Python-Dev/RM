@@ -12,6 +12,7 @@
       </ol>
       <div class="card mb-4">
         <form method="Post" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="card mb-4">
             <div class="card-header"> <i class="fas fa-table mr-1"></i> Update Customer Details </div>
             <div class="card-body px-0 upperFilter">
@@ -179,66 +180,106 @@
                     </div>
                   </div>
                 </div>
-                <div class="card mb-4">
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
+                <div class="card-body px-0 lowerValue">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{form.Down_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{form.Finance|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
 
-                  <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{form.Used_car|as_crispy_field}}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{form.Total_Payment|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
 
-                  <table class="table table-bordered">
-                    <tr>
-                      <th>Booking Reciept</th>
-                      <th>{{form.booking_receipt}}</th>
-                      {% if form.is_multipart %}
-                      <td><span class="text-success">SUBMITTED</span></td>
-                      {% else %}
-                      <td><span class="text-danger">PENDING</span></td>
+                  <div class="card mb-4">
+
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i> Documents </div>
+
+                    <table class="table table-bordered">
+                      <tr>
+                        <th>Booking Reciept</th>
+                        <th>{{form.booking_receipt}}</th>
+                        {% if form.booking_receipt.value %}
+                        <td><span class="text-success">SUBMITTED</span></td>
+                        {% else %}
+                        <td><span class="text-danger">PENDING</span></td>
+                        {% endif %}
+
+                      </tr>
+                      <tr>
+                        <th>Quotation</th>
+                        <th>{{form.quotation}}</th>
+                        {% if form.quotation.value %}
+                        <td><span class="text-success">SUBMITTED</span></td>
+                        {% else %}
+                        <td><span class="text-danger">PENDING</span></td>
+                        {% endif %}
+
+                      </tr>
+                      <tr>
+                        <th>Order Form</th>
+                        <th>{{form.order_form}}</th>
+                        {% if form.order_form.value %}
+                        <td><span class="text-success">SUBMITTED</span></td>
+                        {% else %}
+                        <td><span class="text-danger">PENDING</span></td>
+                        {% endif %}
+
+                      </tr>
+
+                      </tr>
+                      <tr>
+                        <th>Delivery Order</th>
+                        <th>{{form.Delivery_Order}}</th>
+                        {% if form.Delivery_Order.value %}
+                        <td><span class="text-success">SUBMITTED</span></td>
+                        {% else %}
+                        <td><span class="text-danger">PENDING</span></td>
+                        {% endif %}
+
+                      </tr>
+
+                    </table>
+                  </div>
+                  {% if form.Modification.value %}
+                  <div class="card-header"> <i class="fas fa-table mr-1"></i> Modification </div>
+
+
+                  <div class="card-body px-0 upperFilter">
+
+
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+
+                          {{form.Modification|as_crispy_field}}
+
+                        </div>
+                      </div>
                       {% endif %}
 
-                    </tr>
-                    <tr>
-                      <th>Quotation</th>
-                      <th>{{form.quotation}}</th>
-                      {% if form.is_multipart %}
-                      <td><span class="text-success">SUBMITTED</span></td>
-                      {% else %}
-                      <td><span class="text-danger">PENDING</span></td>
-                      {% endif %}
-
-                    </tr>
-                    <tr>
-                      <th>Order Form</th>
-                      <th>{{form.order_form}}</th>
-                      {% if form.is_multipart %}
-                      <td><span class="text-success">SUBMITTED</span></td>
-                      {% else %}
-                      <td><span class="text-danger">PENDING</span></td>
-                      {% endif %}
-
-                    </tr>
-
-                    </tr>
-                    <tr>
-                      <th>Delivery Order</th>
-                      <th>{{form.Delivery_Order}}</th>
-                      {% if form.is_multipart %}
-                      <td><span class="text-success">SUBMITTED</span></td>
-                      {% else %}
-                      <td><span class="text-danger">PENDING</span></td>
-                      {% endif %}
-
-                    </tr>
-
-                  </table>
-                </div>
-
-                <div class="form-group mt-4 mb-0">
-                  {% csrf_token %}
+                      <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
 
 
-                  <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
-
-
-                </div>
-              </div>
+                    </div>
+                  </div>
         </form>
       </div>
     </div>

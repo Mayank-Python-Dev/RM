@@ -62,21 +62,18 @@ def reject(request, pk):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['HeadOffice'])
 def bookingdetail(request, pk):
-    bookings = Salesbooking.objects.filter(booking_ID=pk)
+    Data = Salesbooking.objects.get(id=pk)
+    Form = Bookingform(instance=Data)
     if request.method == 'POST':
-        form = Bookingform(request.POST)
-        if form.is_valid():
-            bookings = form.save()
-            bookings.save()
+        Form = Bookingform(request.POST, instance=Data)
+        if Form.is_valid():
+            Form.save()
+
             messages.success(request, f'MODIFICATION SENT TO SALES!')
             return redirect('headoffice')
-        else:
-            messages.warning(request, f'NOT MODIFY YET!')
-            return redirect('headoffice')
-    else:
-        form = Bookingform()
-        context = {'bookings': bookings, 'form': form}
-        return render(request, 'headoffice/headofficebookingdetail.html', context)
+
+    context = {'Form': Form}
+    return render(request, 'headoffice/headofficebookingdetail.html', context)
 
 
 @login_required(login_url='login')

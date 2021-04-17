@@ -48,6 +48,7 @@
                     <th scope="col">Car - Model - Variant_Type - Colour</th>
                     <th scope="col">Booking Date</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Modified(HO)</th>
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
 
@@ -69,6 +70,11 @@
                     <td><span class=" text-success">Approved</span></td>
                     {% elif booking.status == 'Rejected' %}
                     <td><span class=" text-danger">Rejected</span></td>
+                    {% endif %}
+                    {% if booking.Modification %}
+                    <td><span class=" text-success">Yes</span></td>
+                    {% else %}
+                    <td><span class=" text-danger">No</span></td>
                     {% endif %}
                     <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebooking' booking.id %}">UPDATE</a>
                     </td>
@@ -109,6 +115,7 @@
         <div class="m-2 p-3">
 
           <form method="Post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="card-header"> <i class="fas fa-table mr-1"></i> Customer Booking </div>
             <div class="card-body px-0 upperFilter">
 
@@ -335,7 +342,7 @@
                   </div>
 
                   <div class="form-group mt-4 mb-0">
-                    {% csrf_token %}
+
 
                     <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
 

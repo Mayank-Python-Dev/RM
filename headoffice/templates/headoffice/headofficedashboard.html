@@ -37,7 +37,7 @@
             <table class="table table-info table-Default" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th scope="col">Bookin ID</th>
+                  <th scope="col">Booking ID</th>
                   <th scope="col">Booking Details</th>
                   <th scope="col">Approve</th>
                   <th scope="col">Reject</th>
@@ -50,10 +50,9 @@
                 {% for booking in bookings %}
                 <tr>
 
-                  <td>{{booking.booking_ID}}</td>
+                  <td>{{booking.id}}</td>
 
-                  <td><a class="btn btn-outline-secondary btn-sm"
-                      href="{% url 'bookingdetails' booking.booking_ID %}">VIEW</a>
+                  <td><a class="btn btn-outline-secondary btn-sm" href="{% url 'bookingdetails' booking.id %}">VIEW</a>
                   </td>
                   <td><a class="btn btn-outline-success btn-sm"
                       href="{% url 'approve' booking.booking_ID %}">APPROVE</a></td>

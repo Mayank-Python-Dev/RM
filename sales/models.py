@@ -64,7 +64,7 @@ class Salesbooking(models.Model):
     status = models.CharField(
         max_length=50, null=True, blank=True)
     Modification = models.TextField(
-        max_length=500, help_text='Write Something')
+        max_length=500, help_text='Write if you want to modify something!', blank=True)
 
     def __str__(self):
         return self.customer_name

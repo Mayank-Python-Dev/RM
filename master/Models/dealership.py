@@ -6,10 +6,10 @@ from django.db import models
 
 class Dealership(models.Model):
     # Account = models.OneToOneField(User, on_delete=models.CASCADE)
-    Name = models.CharField(max_length=50)
+    Name = models.CharField(max_length=100)
     address = models.TextField()
-    state = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
     pincode = models.IntegerField()
 
     def __str__(self):

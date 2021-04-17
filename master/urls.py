@@ -66,5 +66,9 @@ urlpatterns = [
     path('selectgroups/delete/<str:pk>/',
          register.delete_groups, name='deletegroups'),
 
+    #table
+    path('table/',views.table,name = 'table'),
+
+
 
 ]

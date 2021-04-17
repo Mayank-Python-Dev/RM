@@ -78,3 +78,9 @@ def load_colours(request):
 @allowed_users(allowed_roles=['Master'])
 def logout(request):
     return render(request, 'registration/login.html')
+
+
+def table(request):
+    pricelists = Dealbreakup.objects.all()
+    context = {'pricelists': pricelists}
+    return render(request, 'master/mastertable.html', context)

@@ -1,0 +1,100 @@
+{% extends 'master/masterbase.html' %}
+
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid pt-2">
+            <ol class="breadcrumb mb-4 bg-white ">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Master View</li>
+            </ol>
+            <style type="text/css">
+                div.message {
+                    text-align: right;
+                }
+            </style>
+            <div class="message">
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    <h3>{{message}}</h3>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card mb-4">
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> PriceList </div>
+
+            </div>
+
+
+            <div class="card-body px-0">
+
+                <div class="col-md-12	">
+                    <div class="form-group">
+                        <table dir="ltr" border="1" cellspacing="0" cellpadding="0">
+                            <colgroup>
+                                <col width="50" />
+                                <col width="56" />
+                                <col width="77" />
+                                <col width="185" />
+                                <col width="77" />
+                                <col width="56" />
+                                <col width="52" />
+                                <col width="44" />
+                                <col width="53" />
+                                <col width="61" />
+                                <col width="61" />
+                                <col width="61" />
+                                <col width="44" />
+                                <col width="101" />
+                            </colgroup>
+                            <tbody>
+                                {% for pricelist in pricelists %}
+                                <tr>
+
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Model&quot;}">
+                                        {{pricelist.model}}
+                                    </td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Fuel&quot;}">
+                                        {{pricelist.fuel}}
+                                    </td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Transmission&quot;}">
+                                        {{pricelist.transmission}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Variant&quot;}">
+                                        {{pricelist.variant}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Ex-Showroom&quot;}">
+                                        {{pricelist.ex_Showroom_Price}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;INS. AMT.&quot;}">
+                                        {{pricelist.Insurance_Amount}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;RTO&quot;}">
+                                        {{pricelist.RTO}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;FASTag&quot;}">
+                                        {{pricelist.FASTAG}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;TCS&quot;}">
+                                        {{pricelist.TCS}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;TOTAL&quot;}">
+                                        {{pricelist.TOTAL}}
+                                    </td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Acc.&quot;}">
+                                        {{pricelist.ACC}}
+                                    </td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;EW&quot;}">
+                                        {{pricelist.extended_Warranty}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;AMC&quot;}">
+                                        {{pricelist.Annual_Maintanence_Cost}}</td>
+                                    <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;ON ROAD&quot;}">
+                                        {{pricelist.on_Road_Price}}
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}
