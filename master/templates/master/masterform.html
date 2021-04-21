@@ -77,6 +77,19 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
+                  {{form.Minimum_Margin|as_crispy_field}}
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  {{form.Purchase_Price|as_crispy_field}}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-group">
                   {{form.RTO|as_crispy_field}}
                 </div>
               </div>
@@ -95,28 +108,23 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{form.TOTAL|as_crispy_field}}
+                  {{form.ACCESSORIES|as_crispy_field}}
                 </div>
               </div>
             </div>
             <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  {{form.ACC|as_crispy_field}}
-                </div>
-              </div>
               <div class="col-md-6">
                 <div class="form-group">
                   {{form.extended_Warranty|as_crispy_field}}
                 </div>
               </div>
-            </div>
-            <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
                   {{form.Annual_Maintanence_Cost|as_crispy_field}}
                 </div>
               </div>
+            </div>
+            <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
                   {{form.on_Road_Price|as_crispy_field}}

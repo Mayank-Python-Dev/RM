@@ -48,7 +48,7 @@
                     <th scope="col">Car - Model - Variant_Type - Colour</th>
                     <th scope="col">Booking Date</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Modified(HO)</th>
+
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
 
@@ -63,19 +63,18 @@
                     <td>{{booking.contact_number}}</td>
                     <td>{{booking.Brand}}/{{booking.Model}}/{{booking.Variant}}/{{booking.Colour}}</td>
                     <td>{{booking.Date|date:"D,d M, Y"}}</td>
-                    {% if not booking.status %}
-                    <td style="position:relative"><i class="fa fa-spinner fa-spin" position: absolute; right: 6px; top:
-                        4px;></i></td>
-                    {% elif booking.status == 'Approved' %}
-                    <td><span class=" text-success">Approved</span></td>
+                    {% if booking.status == 'Clearance Pending' %}
+                    <td><span class="text-success">{{booking.status}}</span></td>
                     {% elif booking.status == 'Rejected' %}
-                    <td><span class=" text-danger">Rejected</span></td>
-                    {% endif %}
-                    {% if booking.Modification %}
-                    <td><span class=" text-success">Yes</span></td>
+                    <td><span class="text-danger">{{booking.status}}</span></td>
+                    {% elif not booking.status %}
+                    {% if booking.booking_receipt and booking.quotation and booking.order_form %}
+                    <td><span class=" text-info">Awaiting Approval</span></td>
                     {% else %}
-                    <td><span class=" text-danger">No</span></td>
+                    <td><span class=" text-danger">Documents Pending</span></td>
                     {% endif %}
+                    {% endif %}
+
                     <td><a class="btn btn-outline-warning btn-sm" href="{% url 'updatebooking' booking.id %}">UPDATE</a>
                     </td>
                     <td><a class="btn btn-outline-danger btn-sm" href="{% url 'deletebooking' booking.id %}">DELETE</a>
@@ -207,37 +206,33 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    {{Form.TOTAL|as_crispy_field}}
+                    {{Form.ACCESSORIES|as_crispy_field}}
                   </div>
                 </div>
               </div>
 
-
               <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    {{Form.ACC|as_crispy_field}}
-                  </div>
-                </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     {{Form.Extended_Warranty|as_crispy_field}}
                   </div>
                 </div>
-              </div>
-
-              <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
                     {{Form.Annual_Maintanence_Cost|as_crispy_field}}
                   </div>
                 </div>
+              </div>
+
+                
+
+              <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-group">
                     {{Form.On_Road_Price|as_crispy_field}}
                   </div>
                 </div>
-              </div>
+                </div>
 
 
               <div class="card-header"> <i class="fas fa-table mr-1"></i> Discount </div>
@@ -280,6 +275,13 @@
                     </div>
                   </div>
                 </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Other|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
                 <div class="card-header"> <i class="fas fa-table mr-1"></i> Deal Breakup </div>
                 <div class="card-body px-0 lowerValue">
                   <div class="form-row">
@@ -306,6 +308,14 @@
                       </div>
                     </div>
                   </div>
+                   <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {{Form.Cash_RTGS_NEFT|as_crispy_field}}
+                      </div>
+                    </div>
+                  </div>
+                  
 
 
 
@@ -391,7 +401,7 @@
         $("#id_FASTAG").val(a.FASTAG);
         $("#id_TCS").val(a.TCS);
         $("#id_TOTAL").val(a.TOTAL);
-        $("#id_ACC").val(a.ACC);
+        $("#id_ACCESSORIES").val(a.ACCESSORIES);
         $("#id_Extended_Warranty").val(a.extended_Warranty);
         $("#id_Annual_Maintanence_Cost").val(a.Annual_Maintanence_Cost);
         $("#id_On_Road_Price").val(a.on_Road_Price);

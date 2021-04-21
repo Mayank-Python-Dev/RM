@@ -50,7 +50,7 @@
                 {% for booking in bookings %}
                 <tr>
 
-                  <td>{{booking.id}}</td>
+                  <td>{{booking.booking_ID}}</td>
 
                   <td><a class="btn btn-outline-secondary btn-sm" href="{% url 'bookingdetails' booking.id %}">VIEW</a>
                   </td>
@@ -60,12 +60,16 @@
                   <td><a class="btn btn-outline-danger btn-sm" href="{% url 'reject' booking.booking_ID %}">REJECT</a>
                   </td>
                   <td><a class="btn btn-outline-warning btn-sm" href="#">MODIFY</a></a></td>
-                  {% if booking.status == 'Approved' %}
+                  {% if booking.status == 'Clearance Pending' %}
                   <td><span class="text-success">{{booking.status}}</span></td>
                   {% elif booking.status == 'Rejected' %}
                   <td><span class="text-danger">{{booking.status}}</span></td>
                   {% elif not booking.status %}
-                  <td><span class="text-info">Waiting .. </td>
+                  {% if booking.booking_receipt and booking.quotation and booking.order_form %}
+                  <td><span class=" text-info">Awaiting Approval</span></td>
+                  {% else %}
+                  <td><span class=" text-danger">Documents Pending</span></td>
+                  {% endif %}
                   {% endif %}
                   {% endfor %}
 

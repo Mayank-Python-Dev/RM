@@ -18,6 +18,8 @@ from master.Models.dealership import *
 
 from sales.forms import *
 
+from headoffice.forms import *
+
 from django.http import JsonResponse
 
 from django.core import serializers
@@ -36,7 +38,7 @@ def Dashboard(request):
 def approve(request, pk):
     bookings = Salesbooking.objects.get(booking_ID=pk)
     if request.method == 'POST':
-        bookings.status = 'Approved'
+        bookings.status = 'Clearance Pending'
         bookings.save()
 
         return redirect('headoffice')
@@ -63,9 +65,9 @@ def reject(request, pk):
 @allowed_users(allowed_roles=['HeadOffice'])
 def bookingdetail(request, pk):
     Data = Salesbooking.objects.get(id=pk)
-    Form = Bookingform(instance=Data)
+    Form = bookingform(instance=Data)
     if request.method == 'POST':
-        Form = Bookingform(request.POST, instance=Data)
+        Form = bookingform(request.POST, instance=Data)
         if Form.is_valid():
             Form.save()
 

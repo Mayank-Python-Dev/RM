@@ -38,8 +38,7 @@ class Salesbooking(models.Model):
     RTO = models.FloatField()
     FASTAG = models.FloatField()
     TCS = models.FloatField()
-    TOTAL = models.FloatField()
-    ACC = models.FloatField()
+    ACCESSORIES = models.FloatField()
     Extended_Warranty = models.FloatField()
     Annual_Maintanence_Cost = models.FloatField()
     On_Road_Price = models.FloatField()
@@ -57,9 +56,11 @@ class Salesbooking(models.Model):
     Remarks = models.CharField(max_length=50)
     Dealer_discount = models.FloatField(default=0)
     Total_discount = models.FloatField(default=0)
+    Other = models.FloatField(default=0)
     Down_Payment = models.FloatField(null=True, blank=True)
     Finance = models.FloatField(null=True, blank=True)
     Used_car = models.FloatField(null=True, blank=True)
+    Cash_RTGS_NEFT = models.FloatField(null=True,blank=True)
     Total_Payment = models.FloatField(null=True, blank=True)
     status = models.CharField(
         max_length=50, null=True, blank=True)
@@ -67,7 +68,7 @@ class Salesbooking(models.Model):
         max_length=500, help_text='Write if you want to modify something!', blank=True)
 
     def __str__(self):
-        return self.customer_name
+        return str(self.customer_name)
 
     def getDict(self):
         return vars(self)
