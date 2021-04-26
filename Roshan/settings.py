@@ -83,16 +83,29 @@ WSGI_APPLICATION = 'Roshan.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Roshan',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5433',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Roshan',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'roshandatabase',
+        'USER': 'root',
+        'PASSWORD': 'root@12345',
         'HOST': '127.0.0.1',
-        'PORT' : '5433',
+        'PORT': '3306',
     }
 }
+
+
 
 # DATABASES = {
 #     'default': {
@@ -137,7 +150,7 @@ USE_TZ = True
 LOGOUT_REDIRECT_URL = 'login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 

@@ -60,15 +60,15 @@ class Salesbooking(models.Model):
     Down_Payment = models.FloatField(null=True, blank=True)
     Finance = models.FloatField(null=True, blank=True)
     Used_car = models.FloatField(null=True, blank=True)
-    Cash_RTGS_NEFT = models.FloatField(null=True,blank=True)
+    Cash_RTGS_NEFT = models.FloatField(null=True, blank=True)
     Total_Payment = models.FloatField(null=True, blank=True)
     status = models.CharField(
         max_length=50, null=True, blank=True)
     Modification = models.TextField(
-        max_length=500, help_text='Write if you want to modify something!', blank=True)
+        max_length=500, help_text='Write if you want to modify something!',null = True, blank=True)
 
     def __str__(self):
-        return str(self.customer_name)
+        return str(self.booking_ID)
 
     def getDict(self):
         return vars(self)

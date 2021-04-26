@@ -1,0 +1,94 @@
+<script>
+//insert data
+    $("#btnsave").click(function () {
+        //console.log("save button clicked");
+        output = "";
+
+        let sid = $("#payid").val();
+        let bk = $("#id_ID").val();
+        let pm = $("#id_Payment_Method").val();
+        let pp = $("#id_payment").val();
+        let csr = $("input[name = csrfmiddlewaretoken").val();
+        if (bk == "") {
+            console.log('please enter id')
+        } else if (pm == "") {
+            console.log('please enter method')
+        } else if (pp == "") {
+            console.log("please enter payment")
+        } else {
+            //console.log(bookingID);
+            //console.log(Paymethod);
+            //console.log(Payment);
+            mydata = {  payid:sid, ID: bk, Payment_Method: pm, payment: pp, csrfmiddlewaretoken: csr };
+            $.ajax({
+                url: "{% url 'save'  %}",
+                method: "POST",
+                data: mydata,
+                success: function (data) {
+                    //console.log(data);
+                    json = data.valuelist
+                    if (data.status == "Save") {
+                        console.log("form submitted");
+                        console.log(data.valuelist);
+                        for (i = 0; i < json.length; i++) {
+                            output += "<tr><td>" + json[i].ID + "</td><td>" + json[i].Payment_Method + "</td><td>" + json[i].payment + "</td><td> <input type='button' class='btn btn-warning btn-sm btn-edit' value = 'Edit'  data-sid=" + json[i].id
+                                + "> <input type='button' class='btn btn-danger btn-sm btn-del' value = 'Delete' data-sid=" + json[i].id
+                                + ">";
+                        }
+                        $("#tbody").html(output);
+                        $("form")[0].reset();
+                    }
+                    if (data.status == 0) {
+                        console.log("unable to save form");
+                    }
+                },
+
+            });
+        }
+    });
+
+    $("#tbody").on("click",".btn-del", function(){
+        
+        let id = $(this).attr("data-sid");
+        let csr = $("input[name = csrfmiddlewaretoken").val();
+        
+        mydata = {sid:id , csrfmiddlewaretoken: csr };
+        mythis = this;
+        $.ajax({
+            url : "{% url 'delete' %}",
+            method : "POST",
+            data : mydata,
+            success:function(data){
+                //console.log(data);
+                
+                if(data.status == 1){
+                    console.log("data delete successfully");
+                    $(mythis).closest("tr").fadeOut();
+                }
+            },
+        });
+    });
+
+//edit data
+$("tbody").on("click",".btn-edit", function(){
+        console.log("edit button clicked")
+        let id = $(this).attr("data-sid");
+        let csr = $("input[name = csrfmiddlewaretoken").val();
+        
+        mydata = {sid:id , csrfmiddlewaretoken: csr };
+        mythis = this;
+        $.ajax({
+            url : "{% url 'edit' %}",
+            method : "POST",
+            data : mydata,
+            success:function(data){
+                //console.log(data);
+                $("#id_ID").val(data.id);
+                $("#id_Payment_Method").val(data.Payment_Method);
+                $("#id_payment").val(data.payment);  
+              }  
+        });
+    });
+
+
+</script>

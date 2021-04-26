@@ -1,0 +1,77 @@
+{% extends 'act/actbase.html' %}
+{% load crispy_forms_tags%}
+{% block content %}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid pt-2">
+            <ol class="breadcrumb mb-4 bg-white ">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Master View</li>
+                <div class="align-self-end ml-auto">
+                    <a class="btn btn-secondary  btn-sm" href="#">BACK</a>
+                </div>
+            </ol>
+
+
+
+            <div class="card mb-4">
+                <div class="card-header"> <i class="fas fa-table mr-1"></i> Update Details </div>
+
+                <div class="col-md-12	">
+                    <div class="form-group">
+                        <form method="Post" action="">
+                            
+                            <!-- <div class="card-header"> <i class="fas fa-table mr-1"></i> Master Dashboard </div> -->
+                            <div class="card-body px-0">
+
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <h6 class="text-center alert alert-info">CREATE PAYMENT BREAKUP</h6>
+                                        <div class="form-group">
+                                            {% csrf_token %}
+                                            <input type = "hidden" name="payid" id = "payid">
+
+                                            {% for fm in form %}
+                                            
+                                            {{fm|as_crispy_field}}
+                                            {% endfor %}
+                                            <input type="button" class="btn btn-success" id="btnsave" value="Save">
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-sm-8">
+                                        <h6 class="text-center alert alert-success">PAYMENT INFORMATION</h6>
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">PAYMENT METHOD</th>
+                                                    <th scope="col">PAYMENT</th>
+                                                    <th scope="col">ACTION</th>
+                                                    
+                                                    
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id = "tbody">
+                                                {% for value in Data %}
+                                                <tr>
+                                                   
+                                                    <td>{{value.ID}}</td>
+                                                    <td>{{value.Payment_Method}}</td>
+                                                    <td>{{value.payment}}</td>
+                                                    <td><input type="button" data-sid="{{value.id}}"
+                                                            class="btn btn-warning btn-sm btn-edit" value="Edit">
+                                                    <input type="button" data-sid="{{value.id}}"
+                                                            class="btn btn-danger btn-sm btn-del" value="Delete"></td>
+                                                          
+                                                </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                {% endblock %}

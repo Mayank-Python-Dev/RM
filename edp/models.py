@@ -11,4 +11,4 @@ class Uploadfile(models.Model):
 	Tally = models.FileField()
 
 	def __str__(self):
-		return str(self.id)
+		return str(self.ID.customer_name)

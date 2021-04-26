@@ -12,6 +12,7 @@ from edp.models import *
 
 def edpdashboard(request):
 	Data = Salesbooking.objects.all()
+	print(Data)
 	context = {'Data': Data}
 	return render(request,'edp/edpdashboard.html', context)
 

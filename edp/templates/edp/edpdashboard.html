@@ -35,21 +35,24 @@
                                             <th scope="col">Booking ID</th>
                                             <th scope="col">View</th>
                                             
-                                            <th scope="col">DMS Status</th>
-                                            <th scope="col">Tally Status</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Payment</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                          {% for value in Data %}
                                          <tr>
+                                            {% if value.status == 'Clearance Pending' %}
 
                                         <td>{{value.booking_ID}}</td>
                                         <td><a class="btn btn-outline-success btn-sm"
                       href="{% url 'DMS&Tally' value.id %}">View</a></td>
+                      <td><span class=" text-info">{{value.status}}</span></td>
                       <td></td>
-                      <td></td>
-
-                                        
+                      
+                                           {% endif %}
                                         </tr>
                                         {% endfor %}
                                     </tbody>
