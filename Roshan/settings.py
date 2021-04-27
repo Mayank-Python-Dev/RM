@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xt04_+i$o0u0l50nyq&42v1l40b4ha&^10oxaramkszmbeu#8o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['roshanmotors-crm.herokuapp.com/','127.0.0.1','162.214.124.127']
 
 
 # Application definition
@@ -97,10 +97,10 @@ WSGI_APPLICATION = 'Roshan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'roshandatabase',
-        'USER': 'root',
-        'PASSWORD': 'root@12345',
-        'HOST': '127.0.0.1',
+        'NAME': 'fwpjjwmy_roshan',
+        'USER': 'fwpjjwmy_hmsuser',
+        'PASSWORD': '?oj2j+OgpZaV',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

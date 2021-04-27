@@ -4,6 +4,6 @@ from .models import *
 # Register your models here.
 
 
-@admin.register(PaymentBreakUP)
-class BookingPayment(admin.ModelAdmin):
-    list_display = ['ID', 'Payment_Method', 'payment']
+@admin.register(CreatePayment)
+class Createpayment(admin.ModelAdmin):
+    list_display = ['BookingID', 'Payment_Method', 'Amount','Date']

@@ -8,9 +8,10 @@ from account import views
 urlpatterns = [
 
     path('', views.actdashboard, name='actdashboard'),
-    path('paymentregister/<str:pk>/', views.paymentbreakup, name='paymentregistration'),
-    path('save/', views.savedata, name='save'),
-    path('delete/', views.deletedata, name='delete'),
-    path('edit/', views.editdata, name='edit'),
+    path('payment_register/<str:pk>/',views.createpayment,name ='paymentregister')
+    # path('paymentregister/<str:pk>/', views.paymentbreakup, name='paymentregistration'),
+    # path('save/', views.savedata, name='save'),
+    # path('delete/', views.deletedata, name='delete'),
+    # path('edit/', views.editdata, name='edit'),
 
 ]
