@@ -1,0 +1,47 @@
+<script>
+
+	$(document).ready(function()
+	{
+		var amount;
+		var totalamount = 0;
+		$('td:nth-child(3)').each(function()
+		{
+			amount = $(this).html();
+			totalamount+=parseInt(amount);
+			$('#totamount').text(totalamount);  
+		});
+
+	});
+	
+
+	
+</script>
+
+<script >
+	$(document).ready(function(){
+		var diff = Number($("#onroadprice").html()) - Number($("#totamount").html());
+	
+	$('#difference').html(diff);
+	});
+	
+
+</script>
+
+
+<script>
+	$(document).ready(function()
+	{
+		var amount;
+		var totalamount = 0;
+		$('td:nth-child(3)').each(function()
+		{
+			amount = $(this).html();
+			totalamount+=parseInt(amount);
+			$('#totamount').text(totalamount);  
+			
+		});
+
+	});
+	
+	
+</script>

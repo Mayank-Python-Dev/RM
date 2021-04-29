@@ -10,12 +10,22 @@ from django.contrib import messages
 
 from edp.models import *
 
+from login.decorators import *
+
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['edp'])
 def edpdashboard(request):
 	Data = Salesbooking.objects.all()
 	print(Data)
 	context = {'Data': Data}
 	return render(request,'edp/edpdashboard.html', context)
 
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['edp'])
 def edpform(request,pk):
 	Data = Salesbooking.objects.filter(id=pk)
 	form = Edpform()

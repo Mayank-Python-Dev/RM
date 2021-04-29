@@ -1,0 +1,167 @@
+{% extends 'act/actbase.html' %}
+{% block content %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid pt-2">
+      <ol class="breadcrumb mb-4 bg-white">
+        <li class="breadcrumb-item">
+          <a href="#">Dashboard</a>
+          <li class="breadcrumb-item active">#</li>
+
+          <div class="align-self-end ml-auto">
+                    <a class="btn btn-secondary  btn-sm" href="{% url 'actdashboard' %}">BACK</a>
+                </div>
+        </li>
+      </ol>
+      <style type="text/css">
+        div.message {
+          text-align: right;
+        }
+      </style>
+      <div class="message">
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+          <h3>{{message}}</h3>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card mb-4">
+                <form>
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i>#</div>
+                    <div class="card-body px-0">
+                        <div class="col-md-12">
+                            <div class="form-group">
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<p class="card-title">Customer : {{customer.customer_name}}</p>
+			  	</div>
+			  	
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-delivered">
+			  	<div class="card-header">
+			  		<p class="card-title">Status : {{customer.status}}</p>
+			  	</div>
+			  	<!-- <div class="card-body">
+			    	<h3 class="card-title">{{delivered}}</h3>
+			  	</div> -->
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending">
+			  	<div class="card-header">
+			  		<p class="card-title">Payment</p>
+			  	</div>
+				  	<!-- <div class="card-body">
+				    	<h3 class="card-title">{{pending}}</h3>
+				  	</div> -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-body">
+			<!-- <p>Booking ID : {{customer.booking_ID}} </p> -->
+			<a class="btn btn-outline-info" href="{% url 'paymentregister' customer.id %}">CREATE PAYMENT BREAKUP</a>
+		</div>
+	</div>
+	<div class="col-md-8">
+        <div class="card card-body">
+
+            <table class="table table-striped table-light" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+
+                                        <th scope="col">Booking ID</th>
+                                        <th scope="col">Payment Method</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Update</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    {% for customer in customers %}
+                                    <tr>
+                                        
+                                    
+                                        <td>{{customer.BookingID}}</td>
+                                        <td>{{customer.Payment_Method}}</td>
+                                        <td>{{customer.Amount}}</td>
+                                        <td>{{customer.Date}}</td>
+                                        <td><a class="btn btn-outline-warning btn-sm"
+                                                href="{% url 'update' customer.id %}">UPDATE</a></td>
+
+                                        <td><a class="btn btn-outline-danger btn-sm"
+                                                href="{% url 'delete' customer.id %}">DELETE</a></td>
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md">
+        <div class="card card-body">
+                            <table class="table table-striped table-light">
+                                <thead>
+                                    <tr>
+                                        <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <p class="card-title">Total Payment</p>
+                </div>
+                    <!-- <div class="card-body">
+                        <h3 class="card-title">{{pending}}</h3>
+                    </div> -->
+            </div>
+        </div>
+    </div>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        
+
+                                    
+                                    <tr>
+                                        <td colspan="2" style = "font-style: italic;">On Road Price</td>
+                                        <td id ="onroadprice">{{customer.On_Road_Price}}
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style = "font-style: italic;">Total Amount</td>
+                                        <td id="totamount">{{customer.Total_Amount}}</td>
+                                        <!-- <td id="totamount">{{customer.Total_Amount}}</td> -->
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style = "font-style:italic;">Difference</td>
+                                        <td id="difference">{{customer.Difference}}</td>
+                                        <!-- <td id="difference">{{customer.Difference}}</td> -->
+                                        
+                                    </tr>
+
+                                </tbody>
+                            </table>
+        </div>
+    </div>
+</div>
+
+ 
+
+
+{% endblock %}

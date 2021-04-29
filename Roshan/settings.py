@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'xt04_+i$o0u0l50nyq&42v1l40b4ha&^10oxaramkszmbeu#8o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['roshanmotors-crm.herokuapp.com/','127.0.0.1','162.214.124.127']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'edp.apps.EdpConfig',
     'account.apps.AccountConfig',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -97,9 +98,9 @@ WSGI_APPLICATION = 'Roshan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fwpjjwmy_roshan',
-        'USER': 'fwpjjwmy_hmsuser',
-        'PASSWORD': '?oj2j+OgpZaV',
+        'NAME': 'roshandatabase',
+        'USER': 'root',
+        'PASSWORD': 'root@12345',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -165,3 +166,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}

@@ -44,8 +44,15 @@ def admin_only(view_func):
         if group == 'Sales':
             return redirect('sales')
 
+        if group == 'Account':
+            return redirect('actdashboard')
+
+        if group == 'edp':
+            return redirect('edpdashboard')
+
         if group == 'Master':
             return view_func(request, *args, **kwargs)
+
 
         else:
             return HttpResponse('Error404')

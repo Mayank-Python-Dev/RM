@@ -1,13 +1,16 @@
 {% extends 'act/actbase.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid pt-2">
             <ol class="breadcrumb mb-4 bg-white ">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active">#</li>
+                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                <li class="breadcrumb-item active">Master View</li>
+                <div class="align-self-end ml-auto">
+                    
+                    <a class="btn btn-secondary  btn-sm" href="{% url 'actdashboard' %}">BACK</a>
+                </div>
             </ol>
             <style type="text/css">
                 div.message {
@@ -16,99 +19,53 @@
             </style>
             <div class="message">
                 {% for message in messages %}
-                <div class="alert alert-success">
-                    <h1 class="display-6">hello</h1>
+                {% if message.tags %}
+                <div class="alert alert-{{message.tags}}">
+                    {% endif %}
+                    <h3>{{message}}</h3>
                 </div>
                 {% endfor %}
             </div>
-            <div class="row">
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white  mb-3" id="total-orders">
-                <div class="card-header">
-                    <h5 class="card-title">Payment Method</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{total_orders}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="card mb-4">
+                <form method="Post" id="personForm" data-models-url="{% url 'ajax_load_models' %}"
+                    data-fuels-url="{% url 'ajax_load_fuels' %}" data-variants-url="{% url 'ajax_load_variants' %}"
+                    data-colours-url="{% url 'ajax_load_colours' %}">
+                    {% csrf_token %}
+                    <div class="card-header"> <i class="fas fa-table mr-1"></i># </div>
+                    <div class="card-body px-0">
+                      {{ formset.management_form }}
+                      {% for form in formset %}
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                  {{form.Payment_Method|as_crispy_field}}
+                                </div>
+                            </div>
 
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white  mb-3" id="orders-delivered">
-                <div class="card-header">
-                    <h5 class="card-title">Amount</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{delivered}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
 
-    <div class="col">
-        <div class="col-md">
-            <div class="card text-center text-white  mb-3" id="orders-pending">
-                <div class="card-header">
-                    <h5 class="card-title">Date</h5>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{pending}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            <div class="row">
-    <div class="col-md-4">
-        <div class="card card-body">
+                                    {{form.Amount|as_crispy_field}}
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                        
 
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.management_form }}
-                {% for field in form %}
-                    {{field.as_p}}
-                    <hr>
-                {% endfor %}
-                
-                <input type="submit" name="Submit">
-            </form>
-
-        </div>
-    </div>
-</div>
-<div class="col-md-7">
-        <h5>LAST 5 ORDERS</h5>
-        <hr>
-        <div class="card card-body">
-            
-            <table class="table table-sm">
-                <tr>
-                    <th>Product</th>
-                    <th>Date Orderd</th>
-                    <th>Status</th>
-                    <th>Update</th>
-                    <th>Remove</th>
-                </tr>
-
-                {% for order in orders %}
-                    <tr>
-                        <td>{{order.product}}</td>
-                        <td>{{order.date_created}}</td>
-                        <td>{{order.status}}</td>
-                        <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
-
-                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td>
-
-                    </tr>
-                {% endfor %}
-
-        
-            </table>
-        </div>
-    </div>
-
+                                    {{form.Date|as_crispy_field}}
+                                </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                          <input type="submit" class="btn btn-primary btn-block" name=add value="Save">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </main>
+              </div>
+              
 {% endblock %}
 
+                              

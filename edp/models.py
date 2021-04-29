@@ -12,3 +12,8 @@ class Uploadfile(models.Model):
 
 	def __str__(self):
 		return str(self.ID.customer_name)
+
+class UploadRTO(models.Model):
+	RTO = models.FileField()
+	Insurance = models.FileField()
+

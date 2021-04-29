@@ -11,6 +11,8 @@
     <title>Account View</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link href="{% static 'date-time-phone/jquery-ui.css' %}" rel="stylesheet" />
+    <link href="{% static 'date-time-phone/jquery-ui-timepicker-addon.css' %}" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -22,6 +24,21 @@
         rel="stylesheet" crossorigin="anonymous" />
     <link href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css" rel="stylesheet"
         crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+     <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <!-- Fengyuan Chen's Datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.css" integrity="sha256-b88RdwbRJEzRx95nCuuva+hO5ExvXXnpX+78h8DjyOE=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.min.js" integrity="sha256-/7FLTdzP6CfC1VBAj/rsp3Rinuuu9leMRGd354hvk0k=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+</body>
+</html>
+
+    {% include 'act/total_amount.html' %}
+    {% include 'act/datetimepicker.html' %}
 </head>
 
 <body class="sb-nav-fixed">
@@ -122,6 +139,11 @@
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
             crossorigin="anonymous"></script>
         <script src="{% static 'assets/demo/datatables-demo.js' %}"></script>
+        
+        
+            
+
+    
 
     
 </body>
