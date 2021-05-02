@@ -26,7 +26,6 @@
         {% endfor %}
       </div>
       <div class="card mb-4">
-                <form>
                     <div class="card-header"> <i class="fas fa-table mr-1"></i>#</div>
                     <div class="card-body px-0">
                         <div class="col-md-12">
@@ -40,6 +39,9 @@
 			  	<div class="card-header">
 			  		<p class="card-title">Customer : {{customer.customer_name}}</p>
 			  	</div>
+                <!-- <div class="card-body">
+                    <h3 class="card-title">{{delivered}}</h3>
+                </div> -->
 			  	
 			</div>
 		</div>
@@ -49,7 +51,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-delivered">
 			  	<div class="card-header">
-			  		<p class="card-title">Status : {{customer.status}}</p>
+			  		<p class="card-title">Status :</p>
 			  	</div>
 			  	<!-- <div class="card-body">
 			    	<h3 class="card-title">{{delivered}}</h3>
@@ -62,7 +64,9 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
-			  		<p class="card-title">Payment</p>
+                    {% for payment in customer_payment %}
+			  		<p class="card-title">Payment : {{payment.Payment_Status}}</p>
+                    {% endfor %}
 			  	</div>
 				  	<!-- <div class="card-body">
 				    	<h3 class="card-title">{{pending}}</h3>
@@ -143,17 +147,21 @@
                                         <td id ="onroadprice">{{customer.On_Road_Price}}
                                         
                                     </tr>
+                                    {% for payment in customer_payment %}
                                     <tr>
+
                                         <td colspan="2" style = "font-style: italic;">Total Amount</td>
-                                        <td id="totamount">{{customer.Total_Amount}}</td>
+                                        <td>{{payment.Total_Payment}}</td>
                                         <!-- <td id="totamount">{{customer.Total_Amount}}</td> -->
                                     </tr>
+                                    
                                     <tr>
                                         <td colspan="2" style = "font-style:italic;">Difference</td>
-                                        <td id="difference">{{customer.Difference}}</td>
+                                        <td >{{payment.Difference}}</td>
                                         <!-- <td id="difference">{{customer.Difference}}</td> -->
                                         
                                     </tr>
+                                    {% endfor %}
 
                                 </tbody>
                             </table>

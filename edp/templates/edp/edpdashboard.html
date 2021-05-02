@@ -44,18 +44,24 @@
 
                                          {% for value in Data %}
                                          <tr>
-                                            {% if value.status == 'Clearance Pending' %}
+                                            {% if value.status %}
 
                                         <td>{{value.booking_ID}}</td>
                                         <td><a class="btn btn-outline-success btn-sm"
                       href="{% url 'DMS&Tally' value.id %}">View</a></td>
                       <td><span class=" text-info">{{value.status}}</span></td>
-                      <td></td>
+                      {% endif %}
+                      {% endfor %}
+                      {% if Dms_status.DMS and Dms_status.Tally %}
+                      <td><span class=" text-info">{{Status}}</span></td>
+                      {% endif %}
+                  </tr>
+
                       
-                                           {% endif %}
-                                        </tr>
-                                        {% endfor %}
+                                         
+                                       
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

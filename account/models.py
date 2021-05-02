@@ -13,12 +13,25 @@ class CreatePayment(models.Model):
 	Payment_Method = models.CharField(max_length=100)
 	Amount = models.IntegerField()
 	Date = models.DateField(auto_now_add=False)
-	Total_Amount = models.IntegerField(null=True)
-	Difference = models.IntegerField(null=True)
 
+
+	# def __str__(self):
+	# 	return str(self.BookingID, self.Date)
 # class MyModelForm(forms.ModelForm):
 #     Date = forms.DateField(widget=AdminDateWidget)
 
 #     class Meta:
 #         model = CreatePayment
 #         fields = "__all__"
+
+class TotalPayment(models.Model):
+	Booking_ID = models.ForeignKey(Salesbooking,on_delete=models.CASCADE)
+	Total_Payment = models.IntegerField(null=True)
+	Payment_Status = models.CharField(max_length=100,null=True)
+	Difference = models.IntegerField(null=True)
+
+
+	def __str__(self):
+		return str(self.Booking_ID)
+
+

@@ -14,11 +14,13 @@ from login.decorators import *
 
 from django.contrib.auth.decorators import login_required
 
+from account.models import *
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['edp'])
 def edpdashboard(request):
 	Data = Salesbooking.objects.all()
-	print(Data)
+	Dms_status = Uploadfile.objects.all()
 	context = {'Data': Data}
 	return render(request,'edp/edpdashboard.html', context)
 
@@ -28,6 +30,7 @@ def edpdashboard(request):
 @allowed_users(allowed_roles=['edp'])
 def edpform(request,pk):
 	Data = Salesbooking.objects.filter(id=pk)
+	paymentstatus = TotalPayment.objects.filter(Booking_ID = pk)
 	form = Edpform()
 	if request.method == "POST":
 		# form['ID']=Salesbooking.objects.filter(id=pk)
@@ -41,13 +44,6 @@ def edpform(request,pk):
 			instance.ID = inv
 			print(instance)
 			instance.save()
-			# obj = form.save(commit=False) # Return an object without saving to the DB
-			# obj.ID = Salesbooking.objects.get(id=pk)
-			# print(obj.ID) # Add an author field which will contain current user's id
-			# obj.save() # Save the final "real form" to the DB
-			# form.save()
-
-			
 			messages.success(request,f'DOCUMENTS UPLOADED!')
 			return redirect('edpdashboard')
 		else:
@@ -55,5 +51,5 @@ def edpform(request,pk):
 			return redirect('edpdashboard')
 
 	form =Edpform()
-	context = {'form':form ,'Data': Data }
+	context = {'form':form ,'Data': Data,'paymentstatus':paymentstatus }
 	return render(request,'edp/create_DMS&Tally.html',context)

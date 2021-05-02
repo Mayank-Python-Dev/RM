@@ -6,4 +6,4 @@ from django.forms import ModelForm
 class Edpform(ModelForm):
 	class Meta:
 		model = Uploadfile
-		fields = ['DMS','Tally']
+		fields = ['DMS','Tally','RTO','Insurance']

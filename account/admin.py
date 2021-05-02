@@ -7,3 +7,6 @@ from .models import *
 @admin.register(CreatePayment)
 class Createpayment(admin.ModelAdmin):
     list_display = ['BookingID', 'Payment_Method', 'Amount','Date']
+
+
+admin.site.register(TotalPayment)
