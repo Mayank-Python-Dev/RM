@@ -38,10 +38,7 @@ docopt==0.6.2
 entrypoints==0.3
 et-xmlfile==1.0.1
 filelock==3.0.12
-<<<<<<< HEAD
 gauss==0.0.9
-=======
->>>>>>> fab9fd9c36ba5a10b1c2ae0afbee0f5f03f2495d
 gunicorn==20.1.0
 idna==2.10
 ipykernel==5.3.4
@@ -142,10 +139,7 @@ virtualenvwrapper==4.8.4
 virtualenvwrapper-win==1.2.6
 wcwidth==0.2.5
 webencodings==0.5.1
-<<<<<<< HEAD
 white==0.1.2
-=======
->>>>>>> fab9fd9c36ba5a10b1c2ae0afbee0f5f03f2495d
 whitenoise==5.2.0
 widgetsnbextension==3.5.1
 word2number==1.1
